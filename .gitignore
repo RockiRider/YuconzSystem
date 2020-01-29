@@ -1,2 +1,11 @@
 .DS_Store
 # Ignore .DS_Store
+
+
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+#Backup of *.doc*
