@@ -1,7 +1,7 @@
 # Yuconz Repository
 #### By KentSoft Team
 
-![Image of Logo](https://git.cs.kent.ac.uk/co510/27a/Assets/KentSoftLogo.png)
+![Image of Logo](/Assets/KentSoftLogo.png)
 
 ##### Tasks:
 
