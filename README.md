@@ -1,7 +1,7 @@
 # Yuconz Repository
 #### By KentSoft Team
 
-![Logo](KentSoftLogo.png)
+![Logo](/Assets/KentSoftLogo.png)
 
 ##### Tasks:
 
