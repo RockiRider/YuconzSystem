@@ -13,7 +13,7 @@ public class Auth {
 		connectToDb();
 	}
 	/*
-	 * Connect to the Database
+	 * Connect to the LOCAL Database
 	 */
 	public Connection connectToDb() {
 		//try & catch 
@@ -38,7 +38,8 @@ public class Auth {
 		}
 	}
 	/* 
-	* Checks if the user is inside the database or not
+	* Checks if the user is inside the database or not. 
+	* Gets the data if the user exists and creates a User object with the data
 	*/
 	public boolean checkValidUser(String uName, String pwd) {
 		
