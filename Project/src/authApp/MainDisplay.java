@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainDisplay {
 
@@ -31,6 +33,11 @@ public class MainDisplay {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnLogout.setBounds(174, 174, 89, 23);
 		frame.getContentPane().add(btnLogout);
 		

@@ -4,9 +4,8 @@ public class Auth {
 	
 	private boolean connected;
 	
-	public Auth(String uName, String pwd) {
+	public Auth() {
 		connectToDb();
-		checkValidUser(uName,pwd);
 	}
 	
 	private void connectToDb() {

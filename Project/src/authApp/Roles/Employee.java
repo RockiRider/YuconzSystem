@@ -4,8 +4,8 @@ import authApp.User;
 
 public class Employee extends User{
 
-	public Employee(String fName, String lName, String tempRole, boolean access) {
-		super(fName, lName, tempRole, access);
+	public Employee(String fName, String lName) {
+		super(fName, lName, "Employee", false);
 		// TODO Auto-generated constructor stub
 	}
 

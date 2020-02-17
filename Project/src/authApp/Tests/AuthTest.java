@@ -12,19 +12,23 @@ class AuthTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
+		
 	}
 
 	@Test
 	void connectToDbTest() {
+		Auth auth = new Auth();
 		assertFalse(auth.getConnected());
 	}
 	@Test
 	void checkValidUserTest1() {
+		Auth auth = new Auth();
 		assertTrue(auth.checkValidUser("Miles", "123"));
 	}
 	@Test
 	void checkValidUserTest2() {
-		assertFalse(auth.checkValidUser("Tsotne", "5asdjh"));
+		Auth auth = new Auth();
+		assertFalse(auth.checkValidUser("Tsotne","asjdhakjsd123"));
 	}
 
 }
