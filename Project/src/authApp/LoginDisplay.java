@@ -11,14 +11,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LoginDisplay {
+public class LoginDisplay{
 
 	private JFrame frmYuconzSystem;
 	private JPasswordField passwordField;
 	private JTextField textField;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
+	private AppController app;
 	
 	/**
 	 * Create the Frame.
@@ -33,6 +36,7 @@ public class LoginDisplay {
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
 		frmYuconzSystem.setVisible(true);
+		frmYuconzSystem.setResizable(false);
 		frmYuconzSystem.setIconImage(Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
 		frmYuconzSystem.setTitle("Yuconz System");
 		frmYuconzSystem.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
@@ -59,10 +63,24 @@ public class LoginDisplay {
 		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.setBounds(128, 186, 88, 38);
 		frmYuconzSystem.getContentPane().add(btnLogin);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String uName = textField.getText();
+				char[] pass = passwordField.getPassword();
+				String pwd =String.valueOf(pass);  
+				app.logIn(uName, pwd);
+			}
+		});
 		
 		JButton btnExit = new JButton("EXIT");
 		btnExit.setBounds(229, 186, 88, 38);
 		frmYuconzSystem.getContentPane().add(btnExit);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				app.logOut();
+			}
+		});
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(LoginDisplay.class.getResource("/authApp/img/user25.png")));

@@ -18,7 +18,6 @@ class AuthTest {
 	@Test
 	void connectToDbTest() {
 		Auth auth = new Auth();
-		assertFalse(auth.getConnected());
 	}
 	@Test
 	void checkValidUserTest1() {

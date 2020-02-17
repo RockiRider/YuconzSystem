@@ -2,6 +2,9 @@ package authApp;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /*
 This is the App Controller, essentially the main class for the app that brings everything together.
 */
@@ -28,12 +31,27 @@ public class AppController {
 		
 	}
 	
-    public void logIn(String uName, String pwd) {
-    	//User session = new User();
+    public static void logIn(String uName, String pwd) {
+    	Auth auth = new Auth();
+    	if(auth.checkValidUser(uName, pwd)) {
+    		try {
+				MainDisplay newWindow = new MainDisplay();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		//custom title, error icon
+    		
+    		JOptionPane.showMessageDialog(null,
+    		    "Username or Password is incorrect.",
+    		    "Error",
+    		    JOptionPane.ERROR_MESSAGE);
+    	}
     	
     }
-    public void logOut() {
-    	session = null;
+    public static void logOut() {
+    	//session = null;
+    	System. exit(0);
     }
 
 }
