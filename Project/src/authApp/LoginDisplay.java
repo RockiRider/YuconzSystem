@@ -19,25 +19,9 @@ public class LoginDisplay {
 	private JTextField textField;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-
+	
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginDisplay window = new LoginDisplay();
-					window.frmYuconzSystem.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Create the Frame.
 	 */
 	public LoginDisplay() {
 		initialize();
@@ -48,6 +32,7 @@ public class LoginDisplay {
 	 */
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
+		frmYuconzSystem.setVisible(true);
 		frmYuconzSystem.setIconImage(Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
 		frmYuconzSystem.setTitle("Yuconz System");
 		frmYuconzSystem.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
