@@ -43,12 +43,27 @@ public class MainDisplay {
 		btnLogout.setBounds(174, 174, 89, 23);
 		frmYuconzSystem.getContentPane().add(btnLogout);
 		
-		JLabel lblWelcome = new JLabel("Welcome");
-		lblWelcome.setBounds(119, 58, 216, 23);
+		//Get USER INFO
+		
+		String fName = Auth.getCurrentUser().getFirstName();
+		String sName = Auth.getCurrentUser().getLastName();
+		String role = Auth.getCurrentUser().getRole();
+		boolean accessLevel = Auth.getCurrentUser().getAccess();
+		String accessLvl = "Normal";
+		if (accessLevel) {
+			accessLvl = "High";
+		}
+		
+		JLabel lblWelcome = new JLabel("Welcome "+fName+" "+sName);
+		lblWelcome.setBounds(142, 62, 186, 23);
 		frmYuconzSystem.getContentPane().add(lblWelcome);
 		
-		JLabel lblRole = new JLabel("Role: ");
-		lblRole.setBounds(303, 11, 49, 14);
+		JLabel lblRole = new JLabel("Role: "+role);
+		lblRole.setBounds(269, 11, 157, 14);
 		frmYuconzSystem.getContentPane().add(lblRole);
+		
+		JLabel lblAccessLevel = new JLabel("Access Level: "+accessLvl);
+		lblAccessLevel.setBounds(215, 36, 211, 14);
+		frmYuconzSystem.getContentPane().add(lblAccessLevel);
 	}
 }

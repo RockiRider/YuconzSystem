@@ -17,4 +17,17 @@ public class User {
 		role = tempRole;
 		higherAccess = access;
 	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public String getRole() {
+		return role;
+	}
+	public boolean getAccess() {
+		return higherAccess;
+	}
 }

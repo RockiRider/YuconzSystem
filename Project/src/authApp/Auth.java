@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class Auth {
 	
 	private Connection myDb = null;
+	private static User currentUser;
 	
 	public Auth() {
 		connectToDb();
@@ -36,7 +37,9 @@ public class Auth {
 			return null;
 		}
 	}
-	
+	/* 
+	* Checks if the user is inside the database or not
+	*/
 	public boolean checkValidUser(String uName, String pwd) {
 		
 		String sql = "select * from Employees where username='"+uName+"' and password='"+pwd+"'";
@@ -46,6 +49,17 @@ public class Auth {
 				ResultSet rs  = stmt.executeQuery(sql)){
 			
 			if(rs.getString("username").contentEquals(uName) && rs.getString("password").contentEquals(pwd)) {
+				
+				String foundRole =  rs.getString("role");
+				boolean access = false;
+				
+				//If Director or HR employee change access level
+				if(foundRole.contentEquals("Director") || foundRole.contentEquals("HR Employee")){
+					access = true;
+				}
+				
+				currentUser = new User(rs.getString("fName"),rs.getString("sName"),foundRole,access);
+				
 				return true;
 			}
 			return false;
@@ -59,12 +73,10 @@ public class Auth {
 			return false;
 		}
 	}
-	/* 
-	 * Maybe need a sessions method or getUser Data method
-	 */
-	
-	public void insertEmployee() {
-		
+
+	//Getter method for Current User
+	public static User getCurrentUser() {
+		return currentUser;
 	}
 	
 }
