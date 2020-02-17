@@ -64,12 +64,6 @@ public class Auth {
 			}
 			return false;
 		}catch(SQLException e){
-			
-			JOptionPane.showMessageDialog(null,
-	    		    "User Does Not Exist",
-	    		    "Error",
-	    		    JOptionPane.ERROR_MESSAGE);
-			
 			return false;
 		}
 	}

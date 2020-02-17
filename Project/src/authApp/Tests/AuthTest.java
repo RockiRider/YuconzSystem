@@ -1,5 +1,6 @@
 package authApp.Tests;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 import authApp.Auth;
 
@@ -18,14 +19,20 @@ class AuthTest {
 	@Test
 	void connectToDbTest() {
 		Auth auth = new Auth();
+		assertNotNull("Connected To DB", auth.connectToDb());
 	}
 	@Test
 	void checkValidUserTest1() {
 		Auth auth = new Auth();
-		assertTrue(auth.checkValidUser("Miles", "123"));
+		assertTrue(auth.checkValidUser("theRealMiles", "password321"));
 	}
 	@Test
 	void checkValidUserTest2() {
+		Auth auth = new Auth();
+		assertTrue(auth.checkValidUser("johnIsReal", "password123"));
+	}
+	@Test
+	void checkValidUserTest3() {
 		Auth auth = new Auth();
 		assertFalse(auth.checkValidUser("Tsotne","asjdhakjsd123"));
 	}
