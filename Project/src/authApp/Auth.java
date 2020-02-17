@@ -11,7 +11,9 @@ public class Auth {
 	public Auth() {
 		connectToDb();
 	}
-	
+	/*
+	 * Connect to the Database
+	 */
 	public Connection connectToDb() {
 		//try & catch 
 		//connected = false;
@@ -34,16 +36,35 @@ public class Auth {
 			return null;
 		}
 	}
-
+	
 	public boolean checkValidUser(String uName, String pwd) {
-		//if connected = true;
-		if(uName.contentEquals("Miles") && pwd.contentEquals("123")) {
-			return true;
+		
+		String sql = "select * from Employees where username='"+uName+"' and password='"+pwd+"'";
+		
+		try(Connection conn = myDb;
+				Statement stmt = conn.createStatement();
+				ResultSet rs  = stmt.executeQuery(sql)){
+			
+			if(rs.getString("username").contentEquals(uName) && rs.getString("password").contentEquals(pwd)) {
+				return true;
+			}
+			return false;
+		}catch(SQLException e){
+			
+			JOptionPane.showMessageDialog(null,
+	    		    "User Does Not Exist",
+	    		    "Error",
+	    		    JOptionPane.ERROR_MESSAGE);
+			
+			return false;
 		}
-		return false;
 	}
 	/* 
 	 * Maybe need a sessions method or getUser Data method
 	 */
+	
+	public void insertEmployee() {
+		
+	}
 	
 }
