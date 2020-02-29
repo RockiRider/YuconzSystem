@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JPasswordField;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -24,15 +26,15 @@ public class LoginDisplay{
 	private AppController app;
 	
 	/**
-	 * Create the Frame.
-	 */
+	* Create the Frame.
+	*/
 	public LoginDisplay() {
 		initialize();
 	}
 
 	/**
-	 * Initialise the contents of the frame.
-	 */
+	* Initialise the contents of the frame.
+	*/
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
 		frmYuconzSystem.setVisible(true);
@@ -43,6 +45,7 @@ public class LoginDisplay{
 		frmYuconzSystem.setBounds(100, 100, 450, 301);
 		frmYuconzSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmYuconzSystem.getContentPane().setLayout(null);
+		
 		
 		JLabel lblTitle = new JLabel("Yuconz");
 		lblTitle.setFont(new Font("Calibri", Font.BOLD, 28));
@@ -73,6 +76,9 @@ public class LoginDisplay{
 			}
 		});
 		
+		JRootPane rootPane = SwingUtilities.getRootPane(btnLogin); 
+		rootPane.setDefaultButton(btnLogin);
+		
 		JButton btnExit = new JButton("EXIT");
 		btnExit.setBounds(229, 186, 88, 38);
 		frmYuconzSystem.getContentPane().add(btnExit);
@@ -87,9 +93,10 @@ public class LoginDisplay{
 		lblNewLabel.setBounds(92, 90, 25, 27);
 		frmYuconzSystem.getContentPane().add(lblNewLabel);
 		
-		lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(LoginDisplay.class.getResource("/authApp/img/lock25.png")));
 		lblNewLabel_1.setBounds(93, 136, 25, 27);
 		frmYuconzSystem.getContentPane().add(lblNewLabel_1);
 	}
+	
 }

@@ -16,15 +16,15 @@ public class MainDisplay {
 
 
 	/**
-	 * Create the Frame.
-	 */
+	* Create the Frame.
+	*/
 	public MainDisplay() {
 		initialize();
 	}
 
 	/**
-	 * Initialise the contents of the frame.
-	 */
+	* Initialise the contents of the frame.
+	*/
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
 		frmYuconzSystem.setTitle("Yuconz System");

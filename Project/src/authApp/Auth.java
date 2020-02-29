@@ -4,20 +4,23 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
+import authApp.Roles.*;
+
 public class Auth {
 	
 	private Connection myDb = null;
 	private static User currentUser;
 	
+	/**
+	* Constructor Method for Auth, which automatically tries to connect to the DB.
+	*/
 	public Auth() {
 		connectToDb();
 	}
-	/*
-	 * Connect to the LOCAL Database
-	 */
+	/**
+	* Connect to the LOCAL Database
+	*/
 	public Connection connectToDb() {
-		//try & catch 
-		//connected = false;
 		try {
 			 // load the sqlite-JDBC driver using the current class loader
 		      Class.forName("org.sqlite.JDBC");
@@ -37,9 +40,10 @@ public class Auth {
 			return null;
 		}
 	}
-	/* 
+	/**
 	* Checks if the user is inside the database or not. 
-	* Gets the data if the user exists and creates a User object with the data
+	* If the user exists, creates the correct currentUser object with the data provided in the Database
+	* 
 	*/
 	public boolean checkValidUser(String uName, String pwd) {
 		
@@ -52,15 +56,23 @@ public class Auth {
 			if(rs.getString("username").contentEquals(uName) && rs.getString("password").contentEquals(pwd)) {
 				
 				String foundRole =  rs.getString("role");
-				boolean access = false;
-				
-				//If Director or HR employee change access level
-				if(foundRole.contentEquals("Director") || foundRole.contentEquals("HR Employee")){
-					access = true;
+				switch(foundRole) {
+				case "Director":
+					currentUser = new Director(rs.getString("fName"),rs.getString("sName"));
+					break;
+				case "HR Employee":
+					currentUser = new HREmployee(rs.getString("fname"),rs.getString("sName"));
+					break;
+				case "Manager":
+					currentUser = new Manager(rs.getString("fname"),rs.getString("sName"));
+					break;
+				case "Reviewer":
+					currentUser = new Reviewer(rs.getString("fname"),rs.getString("sName"));
+					break;
+				case "Employee":
+					currentUser = new Employee(rs.getString("fname"),rs.getString("sName"));
+					break;
 				}
-				
-				currentUser = new User(rs.getString("fName"),rs.getString("sName"),foundRole,access);
-				
 				return true;
 			}
 			return false;
@@ -69,7 +81,10 @@ public class Auth {
 		}
 	}
 
-	//Getter method for Current User
+	/**
+	 * Getter method for Current User
+	 * @return
+	 */
 	public static User getCurrentUser() {
 		return currentUser;
 	}
