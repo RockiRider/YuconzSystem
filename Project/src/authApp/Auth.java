@@ -69,6 +69,9 @@ public class Auth {
 				case "HR Employee":
 					currentUser = new HREmployee(rs.getString("fname"),rs.getString("sName"));
 					break;
+				case "HR Director":
+					currentUser = new HRDirector(rs.getString("fname"),rs.getString("sName"));
+					break;
 				case "Manager":
 					currentUser = new Manager(rs.getString("fname"),rs.getString("sName"));
 					break;
