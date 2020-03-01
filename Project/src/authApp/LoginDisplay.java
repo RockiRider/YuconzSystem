@@ -1,11 +1,9 @@
 package authApp;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.JPasswordField;
 import javax.swing.JRootPane;

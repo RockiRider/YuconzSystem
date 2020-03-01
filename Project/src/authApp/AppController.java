@@ -29,7 +29,7 @@ public class AppController {
 		
 	}
 	
-    public static void logIn(String uName, String pwd) {
+    protected void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
     		try {
@@ -45,7 +45,7 @@ public class AppController {
     	}
     	
     }
-    public static void logOut() {
+    public void logOut() {
     	System. exit(0);
     }
 
