@@ -28,7 +28,7 @@ public class LoginDisplay{
 	private JTextField textField;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-	private AppController app;
+
 	
 	/**
 	* Create the Frame.
@@ -77,7 +77,7 @@ public class LoginDisplay{
 				String uName = textField.getText();
 				char[] pass = passwordField.getPassword();
 				String pwd =String.valueOf(pass);  
-				app.logIn(uName, pwd);
+				AppController.logIn(uName, pwd);
 				frmYuconzSystem.dispose();
 			}
 		});
@@ -90,7 +90,7 @@ public class LoginDisplay{
 		frmYuconzSystem.getContentPane().add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				app.logOut();
+				AppController.logOut();
 			}
 		});
 		
