@@ -1,7 +1,7 @@
 package authApp;
 
-/*
- * This is essentially a session class for the User
+/**
+ * This is essentially a session class for the User. This is the parent class for all the other role Classes. E.g. Director
  */
 public class User {
 

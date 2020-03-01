@@ -16,6 +16,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+/**
+ * This class generates the GUI for the Login functionality
+ * 
+ * @author Tsotne
+ *
+ */
 public class LoginDisplay{
 
 	private JFrame frmYuconzSystem;

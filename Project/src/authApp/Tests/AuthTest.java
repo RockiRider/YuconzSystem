@@ -7,6 +7,11 @@ import authApp.Auth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This is a jUnit Test Class that Tests all the Authentication Tests, including connecting to the Database.
+ * @author Tsotne
+ *
+ */
 class AuthTest {
 
 	private Auth auth;

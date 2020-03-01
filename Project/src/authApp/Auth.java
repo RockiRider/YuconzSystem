@@ -5,7 +5,13 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 import authApp.Roles.*;
-
+/**
+ * This class ensures authentication. It connects to the SQL Lite Database and tries to find the user thats currently logging in. 
+ * Depending on the user's role within the company then creates an object of the correct role for the user.
+ * 
+ * @author Tsotne
+ *
+ */
 public class Auth {
 	
 	private Connection myDb = null;

@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
 This is the App Controller, essentially the main class for the Application that brings everything together.
-*
+*The frames are created from here, and the main method is here as well.
 */
 public class AppController {
 	private User session;
