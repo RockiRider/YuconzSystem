@@ -73,6 +73,7 @@ public class LoginDisplay{
 				char[] pass = passwordField.getPassword();
 				String pwd =String.valueOf(pass);  
 				app.logIn(uName, pwd);
+				frmYuconzSystem.dispose();
 			}
 		});
 		
