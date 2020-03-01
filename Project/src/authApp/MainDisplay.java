@@ -1,7 +1,5 @@
 package authApp;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.Toolkit;
 import javax.swing.JButton;
