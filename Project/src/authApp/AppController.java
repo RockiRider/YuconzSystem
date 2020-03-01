@@ -24,12 +24,7 @@ public class AppController {
 			}
 		});
 	}
-	
-	public AppController() {
-		
-	}
-	
-    protected void logIn(String uName, String pwd) {
+    public static void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
     		try {
@@ -43,9 +38,8 @@ public class AppController {
     		    "Error",
     		    JOptionPane.ERROR_MESSAGE);
     	}
-    	
     }
-    public void logOut() {
+    public static void logOut() {
     	System. exit(0);
     }
 
