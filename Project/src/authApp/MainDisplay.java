@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
+/**
+ * This class generates the GUI for the main display, which is generated after the user successfully logs in.
+ */
 public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
