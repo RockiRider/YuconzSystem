@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -14,7 +16,6 @@ import java.awt.event.ActionEvent;
 public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
-	private AppController app;
 
 
 	/**
@@ -39,10 +40,10 @@ public class MainDisplay {
 		JButton btnLogout = new JButton("LOGOUT");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				app.logOut();
+				AppController.logOut();
 			}
 		});
-		btnLogout.setBounds(174, 174, 89, 23);
+		btnLogout.setBounds(324, 216, 89, 23);
 		frmYuconzSystem.getContentPane().add(btnLogout);
 		
 		//Get USER INFO
@@ -56,16 +57,27 @@ public class MainDisplay {
 			accessLvl = "High";
 		}
 		
-		JLabel lblWelcome = new JLabel("Welcome "+fName+" "+sName);
-		lblWelcome.setBounds(142, 62, 186, 23);
-		frmYuconzSystem.getContentPane().add(lblWelcome);
+		JLabel lblName = new JLabel("<dynamic> <dynamic>");
+		lblName.setText(fName + " "+ sName);
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setBounds(0, 100, 436, 23);
+		frmYuconzSystem.getContentPane().add(lblName);
 		
 		JLabel lblRole = new JLabel("Role: "+role);
-		lblRole.setBounds(269, 11, 157, 14);
+		lblRole.setBounds(10, 11, 157, 14);
 		frmYuconzSystem.getContentPane().add(lblRole);
 		
 		JLabel lblAccessLevel = new JLabel("Access Level: "+accessLvl);
-		lblAccessLevel.setBounds(215, 36, 211, 14);
+		lblAccessLevel.setBounds(10, 36, 186, 14);
 		frmYuconzSystem.getContentPane().add(lblAccessLevel);
+		
+		JLabel lblWelcome_1 = new JLabel("Welcome,");
+		lblWelcome_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome_1.setBounds(0, 81, 436, 14);
+		frmYuconzSystem.getContentPane().add(lblWelcome_1);
+		
+		JButton btnMyPersonalDetails = new JButton("My Personal Details");
+		btnMyPersonalDetails.setBounds(139, 157, 157, 23);
+		frmYuconzSystem.getContentPane().add(btnMyPersonalDetails);
 	}
 }
