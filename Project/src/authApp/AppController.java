@@ -52,7 +52,19 @@ public class AppController {
     	System. exit(0);
     }
     public static void generatePd(int id) {
-    	myPdFrame = new myPdWindow();
+    	
+    	GetDetails myDetails = new GetDetails();
+    	if (myDetails.checkDb(id)) {
+    		myPdFrame = new myPdWindow(id);
+    	}else {
+    		JOptionPane.showMessageDialog(null,
+        		    "Your Personal Details have not yet been created by the HR Team",
+        		    "Error",
+        		    JOptionPane.ERROR_MESSAGE);
+        }
     }
+    	
+    	
+
 
 }

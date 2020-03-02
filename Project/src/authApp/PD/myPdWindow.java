@@ -39,14 +39,14 @@ public class myPdWindow {
 	/**
 	 * Create the application.
 	 */
-	public myPdWindow() {
-		initialise();
+	public myPdWindow(int myid) {
+		initialise(myid);
 	}
 
 	/**
 	 * Initialise the contents of the frame.
 	 */
-	public void initialise() {
+	public void initialise(int tempid) {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(myPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setVisible(true);
@@ -57,6 +57,11 @@ public class myPdWindow {
 	    frame.setContentPane(contentPane);
 	    contentPane.setLayout(null);
 
+	    
+	    String myid = Integer.toString(tempid);
+	    
+	    
+	    
 	    JLabel lblRole = new JLabel("Role: <dynamic>");
 	    lblRole.setBounds(10, 11, 157, 14);
 	    contentPane.add(lblRole);
@@ -78,8 +83,8 @@ public class myPdWindow {
 	    lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblNewLabel_1.setBounds(208, 35, 91, 16);
 	    contentPane.add(lblNewLabel_1);
-
-	    JLabel lblNewLabel_2 = new JLabel("<dynamic>");
+	    
+	    JLabel lblNewLabel_2 = new JLabel(myid);
 	    lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblNewLabel_2.setBounds(310, 35, 105, 16);
 	    contentPane.add(lblNewLabel_2);
