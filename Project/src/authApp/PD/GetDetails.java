@@ -7,11 +7,14 @@ import javax.swing.JOptionPane;
 public class GetDetails {
 	
 	private Connection myDb = null;
+	private static PdStore detailStorage;
+	private String sql;
 	
-	
-	public GetDetails() {
+	public GetDetails(int id) {
 		connectToDb();
+		sql = "select * from PersonalDetails where id='"+id+"'";
 	}
+	
 	/**
 	* Method to connect DB
 	* @return Database
@@ -35,13 +38,14 @@ public class GetDetails {
 			return null;
 		}
 	}
+	
 	/**
 	 * Checks if Personal Details Exists for this User
 	 * @return Boolean
 	 */
 	public boolean checkDb(int userId) {
-		String sql = "select * from PersonalDetails where id='"+userId+"'";
-		System.out.println(userId);
+		//String sql = "select * from PersonalDetails where id='"+userId+"'";
+		System.out.println("checker runs");
 		try(Connection conn = myDb;
 				Statement stmt = conn.createStatement();
 				ResultSet rs  = stmt.executeQuery(sql)){
@@ -53,16 +57,69 @@ public class GetDetails {
 		}
 		return false;
 	}
+	
 	/**
 	* Loads the Details?
 	*/
-	public void loadDetails() {
+	public void pushDetails(int userId) {
+		System.out.println("Here");
+		//String sql = "select * from PersonalDetails where id='"+userId+"'";
+		System.out.println("Before Try");
+		System.out.println(userId);
+		try(Connection conn = myDb;
+				
+				Statement stmt = conn.createStatement();
+				ResultSet rs  = stmt.executeQuery(sql)){
+			System.out.println("Inside Try");
+			int foundId = rs.getInt("id");
+			System.out.println(foundId);
+			if(foundId == userId) {
+				// Get new details from database
+				String firstName = rs.getString("sName");
+				String lastName = rs.getString("fName");
+				String dob = rs.getString("dob");
+				String address1 = rs.getString("address1");
+				String address2 = rs.getString("address2");
+				String city = rs.getString("city");
+				//String county = rs.getString("county");
+				String postCode = rs.getString("postcode");
+				String mobileNum = rs.getString("mobileNum");
+				String telephoneNum = rs.getString("telephoneNum");
+				String emergencyContact = rs.getString("emergencyContact");
+				String emergencyNum = rs.getString("emergencyContactNum");
+			
+				System.out.println("here");
+				// Set new Details
+				detailStorage.setFirstName(firstName);
+				detailStorage.setLastName(lastName);
+				detailStorage.setDoB(dob);
+				detailStorage.setAddress1(address1);
+				detailStorage.setAddress2(address2);
+				detailStorage.setCity(city);
+				//detailStorage.setCounty(county);
+				detailStorage.setPostcode(postCode);
+				detailStorage.setMobile(mobileNum);
+				detailStorage.setTelenum(telephoneNum);
+				detailStorage.setEmergencyContact(emergencyContact);
+				detailStorage.setEmergencyNum(emergencyNum);
+			}else {
+				JOptionPane.showMessageDialog(null,
+		    		    "Connection Made but User not found!",
+		    		    "Error-User Not Found",
+		    		    JOptionPane.ERROR_MESSAGE);
+			}
+		}catch(SQLException e){
+			JOptionPane.showMessageDialog(null,
+	    		    "Cannot Fetch Your Details!",
+	    		    "Error",
+	    		    JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
 		
 	}
-	/**
-	 * Generates a Msg saying MyPersonal Details has not been created yet
-	 */
-	public void errorMsg() {
-		
+	
+	public static PdStore getMyCurrentDetails() {
+		return detailStorage;
 	}
 }
