@@ -77,6 +77,11 @@ public class MainDisplay {
 		frmYuconzSystem.getContentPane().add(lblWelcome_1);
 		
 		JButton btnMyPersonalDetails = new JButton("My Personal Details");
+		btnMyPersonalDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.generatePd();
+			}
+		});
 		btnMyPersonalDetails.setBounds(139, 157, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnMyPersonalDetails);
 	}
