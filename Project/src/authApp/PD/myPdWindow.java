@@ -16,7 +16,8 @@ import java.awt.Toolkit;
 import authApp.AppController;
 
 public class myPdWindow {
-
+	
+	
 	private JFrame frame;
 	
 	
@@ -196,6 +197,11 @@ public class myPdWindow {
 	    btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
+				
+				//Error which stops the above listener from working
+				//Not sure why but we suspect the error is blocking the function from working
+				
+				
 				
 			}
 		});

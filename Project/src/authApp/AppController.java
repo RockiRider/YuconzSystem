@@ -10,6 +10,7 @@ This is the App Controller, essentially the main class for the Application that 
 *The frames are created from here, and the main method is here as well.
 */
 public class AppController {
+
 	private User session;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
@@ -29,6 +30,12 @@ public class AppController {
 			}
 		});
 	}
+	
+	/**
+	 * Authorises the login and checks if the user is valid and in the database
+	 * @param uName username
+	 * @param pwd password
+	 */
 
     public static void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
@@ -48,11 +55,23 @@ public class AppController {
     		    JOptionPane.WARNING_MESSAGE);
     	}
     }
+    
+    /**
+     * Logs the user out
+     */
     public static void logOut() {
     	System. exit(0);
     }
+    
+    /**
+     * initialises the personal detail window
+     * @param id personal details id
+     */
     public static void generatePd(int id) {
+    	//AppController.mainFrame.hide();
     	myPdFrame = new myPdWindow();
     }
 
+   
+    
 }
