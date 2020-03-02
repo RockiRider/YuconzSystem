@@ -128,5 +128,5 @@ public class Auth {
 	public static int getCurrentId() {
 		return id;
 	}
-	
+
 }

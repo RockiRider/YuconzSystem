@@ -8,7 +8,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String role;
-	private boolean higherAccess;
+	boolean higherAccess;
 	
 	public User(String fName, String lName, String tempRole, boolean access) {
 		
@@ -30,4 +30,9 @@ public class User {
 	public boolean getAccess() {
 		return higherAccess;
 	}
+	
+	public void setAccess(boolean newAccess) {
+		higherAccess = newAccess;
+	}
+	
 }
