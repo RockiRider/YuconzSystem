@@ -196,7 +196,7 @@ public class myPdWindow {
 	    btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				MainDisplay.frmYuconzSystem.setVisible(true);
+				
 			}
 		});
 	}
