@@ -54,8 +54,8 @@ public class GetDetails {
 		return false;
 	}
 	/**
-	 * Loads the Details?
-	 */
+	* Loads the Details?
+	*/
 	public void loadDetails() {
 		
 	}

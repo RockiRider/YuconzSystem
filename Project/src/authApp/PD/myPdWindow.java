@@ -11,9 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
 
 import authApp.AppController;
+
+import java.awt.Toolkit;
+
+//import authApp.AppController;
 
 public class myPdWindow {
 
@@ -46,16 +49,18 @@ public class myPdWindow {
 	/**
 	 * Initialise the contents of the frame.
 	 */
-	public void initialise(int tempid) {
+	private void initialise(int tempid) {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(myPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
+		frame.setTitle("My Personal Details");
 		frame.setVisible(true);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(myPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setBounds(300, 300, 750, 600);
 	    contentPane = new JPanel();
 	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	    frame.setContentPane(contentPane);
 	    contentPane.setLayout(null);
+	    
 
 	    
 	    String myid = Integer.toString(tempid);
@@ -200,9 +205,11 @@ public class myPdWindow {
 	    
 	    btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				
+				AppController.removeFrame();
 			}
 		});
+	}
+	public void remove() {
+		frame.dispose();
 	}
 }

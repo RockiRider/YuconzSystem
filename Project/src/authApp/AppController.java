@@ -63,6 +63,10 @@ public class AppController {
         		    JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public static void removeFrame() {
+    	myPdFrame.remove();
+    }
     	
     	
 
