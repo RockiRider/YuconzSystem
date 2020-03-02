@@ -3,6 +3,8 @@ package authApp;
 import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 
+import authApp.PD.myPdWindow;
+
 /**
 This is the App Controller, essentially the main class for the Application that brings everything together.
 *The frames are created from here, and the main method is here as well.
@@ -46,6 +48,9 @@ public class AppController {
     }
     public static void logOut() {
     	System. exit(0);
+    }
+    public static void generatePd() {
+    	myPdWindow myPd = new myPdWindow();
     }
 
 }
