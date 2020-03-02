@@ -82,10 +82,14 @@ public class MainDisplay {
 		btnMyPersonalDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AppController.generatePd(userId);
+				frmYuconzSystem.setVisible(false);
+				
 			}
 		});
 		btnMyPersonalDetails.setBounds(139, 157, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnMyPersonalDetails);
+		
+		//Change permission button 
 		
 		JButton btnChangePermission = new JButton("CHANGE PERMISSION");
 		btnChangePermission.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
