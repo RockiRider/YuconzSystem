@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
 public class myPdWindow {
 
@@ -42,6 +43,7 @@ public class myPdWindow {
 	 */
 	private void initialise() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(myPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setBounds(300, 300, 750, 600);
