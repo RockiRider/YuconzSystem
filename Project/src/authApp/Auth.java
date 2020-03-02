@@ -1,5 +1,10 @@
 package authApp;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
@@ -16,6 +21,7 @@ public class Auth {
 	
 	private Connection myDb = null;
 	private static User currentUser;
+	private LoginDisplay loginDisplay;
 	
 	/**
 	* Constructor Method for Auth, which automatically tries to connect to the DB.
@@ -24,16 +30,41 @@ public class Auth {
 		connectToDb();
 	}
 	/**
+	 * Logs the successful and unsuccessful login attempts inside AuthorisationLogs.txt File.
+	 * @param uName
+	 * @param pwd
+	 * @param success
+	 */
+	public void logAttempt(String uName, String pwd, boolean success) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime currentTime = LocalDateTime.now();
+		String outcome = "Failed";
+		if(success) {
+			outcome = "Successful";
+			//loginDisplay.remove();
+		}
+		
+        try {
+            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
+            writer.write("\r\n"+"--------------------------------------------------------------------"); 
+            writer.write("\r\n");
+            writer.write(outcome +" \t \t "+ uName +" \t "+ pwd +" \t "+ currentTime);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	/**
 	* Connect to the LOCAL Database
 	*/
 	public Connection connectToDb() {
 		try {
-			 // load the sqlite-JDBC driver using the current class loader
+			 // load the SQLite-JDBC driver using the current class loader
 		      Class.forName("org.sqlite.JDBC");
 		      myDb = DriverManager.getConnection("jdbc:sqlite:Auth.db");
 		      
 		      Statement statement = myDb.createStatement();
-		      statement.setQueryTimeout(30);  // set timeout to 30 sec.
+		      statement.setQueryTimeout(30);  // set timeout to 30 seconds.
 		     
 		      return myDb;
 		}catch(Exception e){
