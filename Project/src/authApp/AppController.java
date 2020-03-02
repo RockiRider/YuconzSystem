@@ -3,7 +3,7 @@ package authApp;
 import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 
-import authApp.PD.myPdWindow;
+import authApp.PD.*;
 
 /**
 This is the App Controller, essentially the main class for the Application that brings everything together.
@@ -12,6 +12,8 @@ This is the App Controller, essentially the main class for the Application that 
 public class AppController {
 	private User session;
 	private static LoginDisplay loginFrame;
+	private static MainDisplay mainFrame;
+	private static myPdWindow myPdFrame;
 	
 	/**
 	* Launch the application.
@@ -34,7 +36,7 @@ public class AppController {
     		try {
     			auth.logAttempt(uName, pwd, true);
     			AppController.loginFrame.remove();
-				MainDisplay mainFrame = new MainDisplay();
+				mainFrame = new MainDisplay();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -49,8 +51,8 @@ public class AppController {
     public static void logOut() {
     	System. exit(0);
     }
-    public static void generatePd() {
-    	myPdWindow myPd = new myPdWindow();
+    public static void generatePd(int id) {
+    	myPdFrame = new myPdWindow();
     }
 
 }

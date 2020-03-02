@@ -17,12 +17,12 @@ public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
 
-
 	/**
 	* Create the Frame.
 	*/
 	public MainDisplay() {
 		initialize();
+		
 	}
 
 	/**
@@ -51,6 +51,7 @@ public class MainDisplay {
 		String fName = Auth.getCurrentUser().getFirstName();
 		String sName = Auth.getCurrentUser().getLastName();
 		String role = Auth.getCurrentUser().getRole();
+		int userId = Auth.getCurrentId();
 		boolean accessLevel = Auth.getCurrentUser().getAccess();
 		String accessLvl = "Normal";
 		if (accessLevel) {
@@ -79,7 +80,7 @@ public class MainDisplay {
 		JButton btnMyPersonalDetails = new JButton("My Personal Details");
 		btnMyPersonalDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.generatePd();
+				AppController.generatePd(userId);
 			}
 		});
 		btnMyPersonalDetails.setBounds(139, 157, 157, 23);
