@@ -15,6 +15,7 @@ public class AppController {
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static myPdWindow myPdFrame;
+	private static GetDetails myDetails;
 	
 	/**
 	* Launch the application.
@@ -55,32 +56,41 @@ public class AppController {
     		    JOptionPane.WARNING_MESSAGE);
     	}
     }
-    
     /**
-     * Logs the user out
+     * Logs out the User and closes the System
      */
     public static void logOut() {
     	System. exit(0);
     }
-    
     /**
-     * initialises the personal detail window
-     * @param id personal details id
+     * Generates Personal Details Frame and Populates it
+     * @param id
      */
     public static void generatePd(int id) {
     	
-    	GetDetails myDetails = new GetDetails();
-    	if (myDetails.checkDb(id)) {
-    		myPdFrame = new myPdWindow(id);
+    	boolean checker;
+    	
+    	myDetails = new GetDetails(id);
+    	if(myDetails.checkDb(id)) {
+    		System.out.println("I am in Checker if statement");
+    		myDetails = new GetDetails(id);	//If not here breaks everything??
+    		myDetails.pushDetails(id);
+    		checker = true;
+    		System.out.println("I am in Checker if statement");
     	}else {
+    		checker = false;
     		JOptionPane.showMessageDialog(null,
         		    "Your Personal Details have not yet been created by the HR Team",
         		    "Error",
         		    JOptionPane.ERROR_MESSAGE);
         }
+    	myPdFrame = new myPdWindow(id);
+    	myPdFrame.setVis(true);
+    	if(checker) {
+    		myPdFrame.setVis(true);
+    	}
+
     }
-    	
-    	
 
 
    
