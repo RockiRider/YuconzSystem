@@ -15,6 +15,7 @@ public class myPdWindow {
 
 	private JFrame frame;
 	
+	
 	private JPanel contentPane;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -41,7 +42,7 @@ public class myPdWindow {
 	/**
 	 * Initialise the contents of the frame.
 	 */
-	private void initialise() {
+	public void initialise() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(myPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setVisible(true);

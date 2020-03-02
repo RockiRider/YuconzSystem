@@ -3,7 +3,6 @@ package authApp;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
 import java.sql.*;
 
@@ -21,7 +20,7 @@ public class Auth {
 	
 	private Connection myDb = null;
 	private static User currentUser;
-	private LoginDisplay loginDisplay;
+	private static int id;
 	
 	/**
 	* Constructor Method for Auth, which automatically tries to connect to the DB.
@@ -41,7 +40,6 @@ public class Auth {
 		String outcome = "Failed";
 		if(success) {
 			outcome = "Successful";
-			//loginDisplay.remove();
 		}
 		
         try {
@@ -65,7 +63,6 @@ public class Auth {
 		      
 		      Statement statement = myDb.createStatement();
 		      statement.setQueryTimeout(30);  // set timeout to 30 seconds.
-		     
 		      return myDb;
 		}catch(Exception e){
 			
@@ -127,6 +124,9 @@ public class Auth {
 	 */
 	public static User getCurrentUser() {
 		return currentUser;
+	}
+	public static int getCurrentId() {
+		return id;
 	}
 	
 }
