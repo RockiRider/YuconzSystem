@@ -28,7 +28,6 @@ public class LoginDisplay{
 	private JTextField textField;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-
 	
 	/**
 	* Create the Frame.
@@ -76,9 +75,8 @@ public class LoginDisplay{
 				
 				String uName = textField.getText();
 				char[] pass = passwordField.getPassword();
-				String pwd =String.valueOf(pass);  
+				String pwd = String.valueOf(pass);  
 				AppController.logIn(uName, pwd);
-				frmYuconzSystem.dispose();
 			}
 		});
 		
@@ -103,6 +101,9 @@ public class LoginDisplay{
 		lblNewLabel_1.setIcon(new ImageIcon(LoginDisplay.class.getResource("/authApp/img/lock25.png")));
 		lblNewLabel_1.setBounds(93, 136, 25, 27);
 		frmYuconzSystem.getContentPane().add(lblNewLabel_1);
+	}
+	public void remove() {
+		frmYuconzSystem.dispose();
 	}
 	
 }

@@ -9,6 +9,7 @@ This is the App Controller, essentially the main class for the Application that 
 */
 public class AppController {
 	private User session;
+	private static LoginDisplay loginFrame;
 	
 	/**
 	* Launch the application.
@@ -17,26 +18,30 @@ public class AppController {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginDisplay loginFrame = new LoginDisplay();
+					 loginFrame = new LoginDisplay();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+
     public static void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
     		try {
+    			auth.logAttempt(uName, pwd, true);
+    			AppController.loginFrame.remove();
 				MainDisplay mainFrame = new MainDisplay();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
     	}else {
+    		auth.logAttempt(uName, pwd, false);
     		JOptionPane.showMessageDialog(null,
     		    "Username or Password is incorrect.",
-    		    "Error",
-    		    JOptionPane.ERROR_MESSAGE);
+    		    "Warning",
+    		    JOptionPane.WARNING_MESSAGE);
     	}
     }
     public static void logOut() {
