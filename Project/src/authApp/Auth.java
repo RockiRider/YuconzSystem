@@ -110,6 +110,7 @@ public class Auth {
 					currentUser = new Employee(rs.getString("fname"),rs.getString("sName"));
 					break;
 				}
+				id = rs.getInt("id");
 				return true;
 			}
 			return false;

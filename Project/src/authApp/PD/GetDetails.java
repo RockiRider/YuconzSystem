@@ -10,7 +10,7 @@ public class GetDetails {
 	
 	
 	public GetDetails() {
-		
+		connectToDb();
 	}
 	/**
 	* Method to connect DB
@@ -40,12 +40,28 @@ public class GetDetails {
 	 * @return Boolean
 	 */
 	public boolean checkDb(int userId) {
-		
+		String sql = "select * from PersonalDetails where id='"+userId+"'";
+		System.out.println(userId);
+		try(Connection conn = myDb;
+				Statement stmt = conn.createStatement();
+				ResultSet rs  = stmt.executeQuery(sql)){
+		if(rs.getInt("id") == userId) {
+			return true;
+		}
+		}catch(SQLException e){
+			return false;
+		}
 		return false;
 	}
+	/**
+	 * Loads the Details?
+	 */
 	public void loadDetails() {
 		
 	}
+	/**
+	 * Generates a Msg saying MyPersonal Details has not been created yet
+	 */
 	public void errorMsg() {
 		
 	}

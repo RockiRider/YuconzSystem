@@ -10,6 +10,7 @@ This is the App Controller, essentially the main class for the Application that 
 *The frames are created from here, and the main method is here as well.
 */
 public class AppController {
+
 	private User session;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
@@ -29,6 +30,12 @@ public class AppController {
 			}
 		});
 	}
+	
+	/**
+	 * Authorises the login and checks if the user is valid and in the database
+	 * @param uName username
+	 * @param pwd password
+	 */
 
     public static void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
@@ -48,11 +55,34 @@ public class AppController {
     		    JOptionPane.WARNING_MESSAGE);
     	}
     }
+    
+    /**
+     * Logs the user out
+     */
     public static void logOut() {
     	System. exit(0);
     }
+    
+    /**
+     * initialises the personal detail window
+     * @param id personal details id
+     */
     public static void generatePd(int id) {
-    	myPdFrame = new myPdWindow();
+    	
+    	GetDetails myDetails = new GetDetails();
+    	if (myDetails.checkDb(id)) {
+    		myPdFrame = new myPdWindow(id);
+    	}else {
+    		JOptionPane.showMessageDialog(null,
+        		    "Your Personal Details have not yet been created by the HR Team",
+        		    "Error",
+        		    JOptionPane.ERROR_MESSAGE);
+        }
     }
+    	
+    	
 
+
+   
+    
 }
