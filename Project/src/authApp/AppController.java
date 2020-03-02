@@ -10,6 +10,7 @@ This is the App Controller, essentially the main class for the Application that 
 *The frames are created from here, and the main method is here as well.
 */
 public class AppController {
+
 	private User session;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
@@ -30,9 +31,13 @@ public class AppController {
 			}
 		});
 	}
+	
 	/**
-	 * Attempts to login and creates a Log of this
+	 * Authorises the login and checks if the user is valid and in the database
+	 * @param uName username
+	 * @param pwd password
 	 */
+
     public static void logIn(String uName, String pwd) {
     	Auth auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
@@ -88,4 +93,6 @@ public class AppController {
     }
 
 
+   
+    
 }

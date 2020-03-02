@@ -67,6 +67,10 @@ public class LoginDisplay{
 		frmYuconzSystem.getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		/**
+		 * Creates the login button
+		 */
+		
 		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.setBounds(128, 186, 88, 38);
 		frmYuconzSystem.getContentPane().add(btnLogin);
@@ -82,6 +86,10 @@ public class LoginDisplay{
 		
 		JRootPane rootPane = SwingUtilities.getRootPane(btnLogin); 
 		rootPane.setDefaultButton(btnLogin);
+		
+		/**
+		 * Creates the Exit button
+		 */
 		
 		JButton btnExit = new JButton("EXIT");
 		btnExit.setBounds(229, 186, 88, 38);
