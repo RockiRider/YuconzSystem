@@ -1,6 +1,8 @@
 package authApp.PD;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import authApp.AppController;
 
 public class myPdWindow {
 
@@ -180,7 +184,17 @@ public class myPdWindow {
 	    textField_12.setColumns(10);
 	    textField_12.setBounds(138, 345, 194, 22);
 	    contentPane.add(textField_12);
+	    
+	    JButton btnBack = new JButton("BACK");
+	    btnBack.setBounds(37, 499, 89, 23);
+	    contentPane.add(btnBack);
 	    textField_2.setColumns(10);
+	    
+	    btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				MainDisplay.frmYuconzSystem.setVisible(true);
+			}
+		});
 	}
-
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 
 /**
@@ -84,5 +85,10 @@ public class MainDisplay {
 		});
 		btnMyPersonalDetails.setBounds(139, 157, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnMyPersonalDetails);
+		
+		JButton btnChangePermission = new JButton("CHANGE PERMISSION");
+		btnChangePermission.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
+		btnChangePermission.setBounds(0, 62, 130, 29);
+		frmYuconzSystem.getContentPane().add(btnChangePermission);
 	}
 }
