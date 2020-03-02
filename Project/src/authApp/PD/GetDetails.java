@@ -41,7 +41,7 @@ public class GetDetails {
 	 */
 	public boolean checkDb(int userId) {
 		String sql = "select * from PersonalDetails where id='"+userId+"'";
-		
+		System.out.println(userId);
 		try(Connection conn = myDb;
 				Statement stmt = conn.createStatement();
 				ResultSet rs  = stmt.executeQuery(sql)){
