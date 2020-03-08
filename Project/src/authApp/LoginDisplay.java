@@ -41,7 +41,6 @@ public class LoginDisplay{
 	*/
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
-		frmYuconzSystem.setVisible(true);
 		frmYuconzSystem.setResizable(false);
 		frmYuconzSystem.setIconImage(Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
 		frmYuconzSystem.setTitle("Yuconz System");
@@ -49,6 +48,8 @@ public class LoginDisplay{
 		frmYuconzSystem.setBounds(100, 100, 450, 301);
 		frmYuconzSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmYuconzSystem.getContentPane().setLayout(null);
+		frmYuconzSystem.setLocationRelativeTo(null); 
+		frmYuconzSystem.setVisible(true);
 		
 		
 		JLabel lblTitle = new JLabel("Yuconz");

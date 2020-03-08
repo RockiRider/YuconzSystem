@@ -35,12 +35,15 @@ public class MainDisplay {
 	private void initialize() {
 		frmYuconzSystem = new JFrame();
 		frmYuconzSystem.setTitle("Yuconz System");
-		frmYuconzSystem.setVisible(true);
+		
 		frmYuconzSystem.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
-		frmYuconzSystem.setBounds(100, 100, 450, 300);
+		frmYuconzSystem.setBounds(100, 100, 715, 433);
+		
 		frmYuconzSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmYuconzSystem.getContentPane().setLayout(null);
+		frmYuconzSystem.setLocationRelativeTo(null); 
+		frmYuconzSystem.setVisible(true);
 
 		JButton btnLogout = new JButton("LOGOUT");
 		btnLogout.addActionListener(new ActionListener() {
@@ -48,7 +51,7 @@ public class MainDisplay {
 				AppController.logOut();
 			}
 		});
-		btnLogout.setBounds(324, 216, 89, 23);
+		btnLogout.setBounds(581, 360, 89, 23);
 		frmYuconzSystem.getContentPane().add(btnLogout);
 
 		// Get USER INFO
@@ -59,6 +62,8 @@ public class MainDisplay {
 		int userId = Auth.getCurrentId();
 		accessLevel = Auth.getCurrentUser().getAccess();
 		tempAccessLevel = accessLevel;
+		
+		
 		String accessLvl = "Normal";
 		if (accessLevel) {
 			accessLvl = "High";
@@ -67,7 +72,7 @@ public class MainDisplay {
 		JLabel lblName = new JLabel("<dynamic> <dynamic>");
 		lblName.setText(fName + " " + sName);
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setBounds(0, 100, 436, 23);
+		lblName.setBounds(131, 100, 436, 23);
 		frmYuconzSystem.getContentPane().add(lblName);
 
 		JLabel lblRole = new JLabel("Role: " + role);
@@ -78,10 +83,10 @@ public class MainDisplay {
 		lblAccessLevel.setBounds(10, 36, 186, 14);
 		frmYuconzSystem.getContentPane().add(lblAccessLevel);
 
-		JLabel lblWelcome_1 = new JLabel("Welcome,");
-		lblWelcome_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcome_1.setBounds(0, 81, 436, 14);
-		frmYuconzSystem.getContentPane().add(lblWelcome_1);
+		JLabel lblWelcome = new JLabel("Welcome,");
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setBounds(131, 81, 436, 14);
+		frmYuconzSystem.getContentPane().add(lblWelcome);
 		
 		JButton btnMyPd = new JButton("My Personal Details");
 		btnMyPd.addActionListener(new ActionListener() {
@@ -89,53 +94,29 @@ public class MainDisplay {
 				AppController.generatePd(userId);
 			}
 		});
-		btnMyPd.setBounds(157, 134, 125, 23);
+		btnMyPd.setBounds(271, 164, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnMyPd);
-
-		JButton btnHigh = new JButton("HIGH");
-		JButton btnChangePermission = new JButton("LOW");
-
-		if (accessLevel) {
-
-			btnHigh.setFont(new Font("Dialog", Font.PLAIN, 9));
-			btnHigh.setBounds(10, 130, 157, 23);
-			frmYuconzSystem.getContentPane().add(btnHigh);
-
-			btnChangePermission.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
-			btnChangePermission.setBounds(10, 78, 147, 29);
-			frmYuconzSystem.getContentPane().add(btnChangePermission);
-
-			btnChangePermission.setBounds(10, 66, 157, 23);
-			frmYuconzSystem.getContentPane().add(btnChangePermission);
-
-			btnHigh.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (!accessLevel) {
-						JButton btnMyPersonalDetails = (JButton) e.getSource();
-						lblAccessLevel.setText("Access Level: High");
-						Auth.getCurrentUser().setAccess(true);
-						accessLevel = Auth.getCurrentUser().getAccess();
-					}
+		JButton btnChangeAccess = new JButton("Toggle Access Level");
+		btnChangeAccess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(accessLevel) {
+					lblAccessLevel.setText("Access Level: Normal");
+					accessLevel = false;
+				}else{
+					lblAccessLevel.setText("Access Level: High");
+					accessLevel = true;
 				}
-			});
-
-			btnChangePermission.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-					if (accessLevel) {
-						JButton btnMyPersonalDetails = (JButton) e.getSource();
-						lblAccessLevel.setText("Access Level: Low");
-						Auth.getCurrentUser().setAccess(false);
-						accessLevel = Auth.getCurrentUser().getAccess();
-
-					}
-
-				}
-			});
-		} else if (!accessLevel) {
-			btnHigh.setVisible(false);
-			btnChangePermission.setVisible(false);
+			}
+		});
+		btnChangeAccess.setBounds(10, 61, 157, 23);
+		frmYuconzSystem.getContentPane().add(btnChangeAccess);
+		btnChangeAccess.setVisible(false);
+		if(tempAccessLevel) {
+			btnChangeAccess.setVisible(true);
 		}
+
+
+		
 
 	}
 	public void hide() {
