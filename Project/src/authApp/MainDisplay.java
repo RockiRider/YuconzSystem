@@ -82,6 +82,15 @@ public class MainDisplay {
 		lblWelcome_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome_1.setBounds(0, 81, 436, 14);
 		frmYuconzSystem.getContentPane().add(lblWelcome_1);
+		
+		JButton btnMyPd = new JButton("My Personal Details");
+		btnMyPd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.generatePd(userId);
+			}
+		});
+		btnMyPd.setBounds(157, 134, 125, 23);
+		frmYuconzSystem.getContentPane().add(btnMyPd);
 
 		JButton btnHigh = new JButton("HIGH");
 		JButton btnChangePermission = new JButton("LOW");
@@ -128,13 +137,11 @@ public class MainDisplay {
 			btnChangePermission.setVisible(false);
 		}
 
-		JButton btnMyPersonalDetails = new JButton("My Personal Details");
-		btnMyPersonalDetails.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AppController.generatePd(userId);
-
-			}
-		});
-
+	}
+	public void hide() {
+		frmYuconzSystem.setVisible(false);
+	}
+	public void show() {
+		frmYuconzSystem.setVisible(true);
 	}
 }
