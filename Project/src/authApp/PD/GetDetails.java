@@ -8,11 +8,9 @@ public class GetDetails {
 	
 	private Connection myDb = null;
 	private static PdStore currentDetails;
-	private String sql;
 	
 	public GetDetails(int id) {
 		connectToDb();
-		sql = "select * from PersonalDetails where id='"+id+"'";
 		currentDetails = new PdStore();
 	}
 	
@@ -45,16 +43,20 @@ public class GetDetails {
 	 * @return Boolean
 	 */
 	public boolean checkDb(int userId) {
-		//String sql = "select * from PersonalDetails where id='"+userId+"'";
-		System.out.println("checker runs");
+		
+		String sql = "select id from PersonalDetails where id='"+userId+"'";
+		
 		try(Connection conn = myDb;
-				Statement stmt = conn.createStatement();
-				ResultSet rs  = stmt.executeQuery(sql)){
-		if(rs.getInt("id") == userId) {
-			return true;
-		}
+			Statement stmt = conn.createStatement();
+			ResultSet rs  = stmt.executeQuery(sql)){
+				if(rs.getInt("id") == userId) {
+					rs.close();
+					myDb.close();
+					return true;
+				}
 		}catch(SQLException e){
-			return false;
+			
+			myDb = null;
 		}
 		return false;
 	}
@@ -64,45 +66,46 @@ public class GetDetails {
 	*/
 	public void pushDetails(int userId) {
 		System.out.println("Here");
-		//String sql = "select * from PersonalDetails where id='"+userId+"'";
+		String sql = "select * from PersonalDetails where id='"+userId+"'";
 		System.out.println("Before Try");
-		System.out.println(userId);
+		
+		connectToDb();
+		
 		try(Connection conn = myDb;
-				
-				Statement stmt = conn.createStatement();
-				ResultSet rs  = stmt.executeQuery(sql)){
-			System.out.println("Inside Try");
-			int foundId = rs.getInt("id");
-			System.out.println(foundId);
-			if(foundId == userId) {
-				// Get new details from database
-				String firstName = rs.getString("sName");
-				String lastName = rs.getString("fName");
-				String dob = rs.getString("dob");
-				String address1 = rs.getString("address1");
-				String address2 = rs.getString("address2");
-				String city = rs.getString("city");
-				//String county = rs.getString("county");
-				String postCode = rs.getString("postcode");
-				String mobileNum = rs.getString("mobileNum");
-				String telephoneNum = rs.getString("telephoneNum");
-				String emergencyContact = rs.getString("emergencyContact");
-				String emergencyNum = rs.getString("emergencyContactNum");
+			Statement stmt = conn.createStatement();
+			ResultSet rs  = stmt.executeQuery(sql)){
 			
-				System.out.println("here");
-				// Set new Details
-				currentDetails.setFirstName(firstName);
-				currentDetails.setLastName(lastName);
-				currentDetails.setDoB(dob);
-				currentDetails.setAddress1(address1);
-				currentDetails.setAddress2(address2);
-				currentDetails.setCity(city);
-				//detailStorage.setCounty(county);
-				currentDetails.setPostcode(postCode);
-				currentDetails.setMobile(mobileNum);
-				currentDetails.setTelenum(telephoneNum);
-				currentDetails.setEmergencyContact(emergencyContact);
-				currentDetails.setEmergencyNum(emergencyNum);
+				System.out.println("Inside Try");
+				int foundId = rs.getInt("id");
+				if(foundId == userId) {
+					// Get new details from database
+					String firstName = rs.getString("sName");
+					String lastName = rs.getString("fName");
+					String dob = rs.getString("dob");
+					String address1 = rs.getString("address1");
+					String address2 = rs.getString("address2");
+					String city = rs.getString("city");
+					//String county = rs.getString("county");
+					String postCode = rs.getString("postcode");
+					String mobileNum = rs.getString("mobileNum");
+					String telephoneNum = rs.getString("telephoneNum");
+					String emergencyContact = rs.getString("emergencyContact");
+					String emergencyNum = rs.getString("emergencyContactNum");
+			
+				
+					// Set new Details
+					currentDetails.setFirstName(firstName);
+					currentDetails.setLastName(lastName);
+					currentDetails.setDoB(dob);
+					currentDetails.setAddress1(address1);
+					currentDetails.setAddress2(address2);
+					currentDetails.setCity(city);
+					//detailStorage.setCounty(county);
+					currentDetails.setPostcode(postCode);
+					currentDetails.setMobile(mobileNum);
+					currentDetails.setTelenum(telephoneNum);
+					currentDetails.setEmergencyContact(emergencyContact);
+					currentDetails.setEmergencyNum(emergencyNum);
 			}else {
 				JOptionPane.showMessageDialog(null,
 		    		    "Connection Made but User not found!",

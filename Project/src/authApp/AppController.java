@@ -70,7 +70,16 @@ public class AppController {
     	
     	mainFrame.hide();
     	myDetails = new GetDetails(id);
-    	myPdFrame = new MyPdWindow(id);
+    	if(myDetails.checkDb(id)) {
+    		myDetails.pushDetails(id);
+    		myPdFrame = new MyPdWindow(id);
+    	}else{
+    		JOptionPane.showMessageDialog(null,
+        		    "Your Personal Details have not yet been created by the HR Team",
+        		    "Error",
+        		    JOptionPane.ERROR_MESSAGE);
+    	}
+    	
     }
     public static void showMain() {
     	mainFrame.show();
