@@ -7,12 +7,13 @@ import javax.swing.JOptionPane;
 public class GetDetails {
 	
 	private Connection myDb = null;
-	private static PdStore detailStorage;
+	private static PdStore currentDetails;
 	private String sql;
 	
 	public GetDetails(int id) {
 		connectToDb();
 		sql = "select * from PersonalDetails where id='"+id+"'";
+		currentDetails = new PdStore();
 	}
 	
 	/**
@@ -90,18 +91,18 @@ public class GetDetails {
 			
 				System.out.println("here");
 				// Set new Details
-				detailStorage.setFirstName(firstName);
-				detailStorage.setLastName(lastName);
-				detailStorage.setDoB(dob);
-				detailStorage.setAddress1(address1);
-				detailStorage.setAddress2(address2);
-				detailStorage.setCity(city);
+				currentDetails.setFirstName(firstName);
+				currentDetails.setLastName(lastName);
+				currentDetails.setDoB(dob);
+				currentDetails.setAddress1(address1);
+				currentDetails.setAddress2(address2);
+				currentDetails.setCity(city);
 				//detailStorage.setCounty(county);
-				detailStorage.setPostcode(postCode);
-				detailStorage.setMobile(mobileNum);
-				detailStorage.setTelenum(telephoneNum);
-				detailStorage.setEmergencyContact(emergencyContact);
-				detailStorage.setEmergencyNum(emergencyNum);
+				currentDetails.setPostcode(postCode);
+				currentDetails.setMobile(mobileNum);
+				currentDetails.setTelenum(telephoneNum);
+				currentDetails.setEmergencyContact(emergencyContact);
+				currentDetails.setEmergencyNum(emergencyNum);
 			}else {
 				JOptionPane.showMessageDialog(null,
 		    		    "Connection Made but User not found!",
@@ -120,6 +121,6 @@ public class GetDetails {
 	}
 	
 	public static PdStore getMyCurrentDetails() {
-		return detailStorage;
+		return currentDetails;
 	}
 }

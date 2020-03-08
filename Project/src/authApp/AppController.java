@@ -11,10 +11,10 @@ This is the App Controller, essentially the main class for the Application that 
 */
 public class AppController {
 
-	private User session;
+	//private User session;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
-	private static myPdWindow myPdFrame;
+	private static MyPdWindow myPdFrame;
 	private static GetDetails myDetails;
 	
 	/**
@@ -44,7 +44,7 @@ public class AppController {
     		try {
     			auth.logAttempt(uName, pwd, true);
     			AppController.loginFrame.remove();
-				mainFrame = new MainDisplay();
+    			mainFrame = new MainDisplay();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -68,28 +68,12 @@ public class AppController {
      */
     public static void generatePd(int id) {
     	
-    	boolean checker;
-    	
+    	mainFrame.hide();
     	myDetails = new GetDetails(id);
-    	if(myDetails.checkDb(id)) {
-    		System.out.println("I am in Checker if statement");
-    		myDetails = new GetDetails(id);	//If not here breaks everything??
-    		myDetails.pushDetails(id);
-    		checker = true;
-    		System.out.println("I am in Checker if statement");
-    	}else {
-    		checker = false;
-    		JOptionPane.showMessageDialog(null,
-        		    "Your Personal Details have not yet been created by the HR Team",
-        		    "Error",
-        		    JOptionPane.ERROR_MESSAGE);
-        }
-    	myPdFrame = new myPdWindow(id);
-    	myPdFrame.setVis(true);
-    	if(checker) {
-    		myPdFrame.setVis(true);
-    	}
-
+    	myPdFrame = new MyPdWindow(id);
+    }
+    public static void showMain() {
+    	mainFrame.show();
     }
 
 
