@@ -96,7 +96,7 @@ public class LoginDisplay{
 		frmYuconzSystem.getContentPane().add(btnExit);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.logOut();
+				System.exit(0);
 			}
 		});
 		

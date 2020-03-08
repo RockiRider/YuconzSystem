@@ -58,7 +58,7 @@ private void initialize(int tempid) {
 	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 	frame.setTitle("Yuconz System");
 	frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
-	frame.setBounds(100, 100, 1038, 611);
+	frame.setBounds(100, 100, 787, 611);
 	frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	frame.getContentPane().setLayout(null);
 	frame.addWindowListener(new WindowAdapter() {
@@ -92,6 +92,11 @@ private void initialize(int tempid) {
     frame.getContentPane().add(lblAccessLevel);
 
     JButton btnLogout = new JButton("LOGOUT");
+    btnLogout.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		AppController.logOut();
+    	}
+    });
     btnLogout.setBounds(615, 499, 89, 23);
     frame.getContentPane().add(btnLogout);
 
@@ -248,5 +253,8 @@ private void initialize(int tempid) {
 	public void backFunction(){
 		AppController.showMain();
 		hide();
+	}
+	public void die() {
+		frame.dispose();
 	}
 }

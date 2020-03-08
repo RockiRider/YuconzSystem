@@ -60,7 +60,9 @@ public class AppController {
      * Logs out the User and closes the System
      */
     public static void logOut() {
-    	System. exit(0);
+    	main(null);
+    	removeMain();
+    	removeMyPd();
     }
     /**
      * Generates Personal Details Frame and Populates it
@@ -78,11 +80,18 @@ public class AppController {
         		    "Your Personal Details have not yet been created by the HR Team",
         		    "Error",
         		    JOptionPane.ERROR_MESSAGE);
+    		showMain();
     	}
     	
     }
     public static void showMain() {
     	mainFrame.show();
+    }
+    public static void removeMain() {
+    	mainFrame.die();
+    }
+    public static void removeMyPd() {
+    	myPdFrame.die();
     }
 
 

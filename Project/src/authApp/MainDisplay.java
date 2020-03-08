@@ -144,4 +144,7 @@ public class MainDisplay {
 	public void show() {
 		frmYuconzSystem.setVisible(true);
 	}
+	public void die() {
+		frmYuconzSystem.dispose();
+	}
 }

@@ -65,9 +65,7 @@ public class GetDetails {
 	* Loads the Details?
 	*/
 	public void pushDetails(int userId) {
-		System.out.println("Here");
 		String sql = "select * from PersonalDetails where id='"+userId+"'";
-		System.out.println("Before Try");
 		
 		connectToDb();
 		
