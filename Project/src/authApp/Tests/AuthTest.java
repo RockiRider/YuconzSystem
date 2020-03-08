@@ -25,7 +25,7 @@ class AuthTest {
 	*/
 	@Test
 	void connectToDbTest() {
-		Auth auth = new Auth();
+		auth = new Auth();
 		assertNotNull("Connected To DB", auth.connectToDb());
 	}
 	/*
@@ -33,7 +33,7 @@ class AuthTest {
 	*/
 	@Test
 	void checkValidUserTest1() {
-		Auth auth = new Auth();
+		auth = new Auth();
 		assertTrue(auth.checkValidUser("theRealMiles", "password321"));
 	}
 	/*
@@ -41,7 +41,7 @@ class AuthTest {
 	*/
 	@Test
 	void checkValidUserTest2() {
-		Auth auth = new Auth();
+		auth = new Auth();
 		assertTrue(auth.checkValidUser("johnIsReal", "password123"));
 	}
 	/*
@@ -49,7 +49,7 @@ class AuthTest {
 	*/
 	@Test
 	void checkValidUserTest3() {
-		Auth auth = new Auth();
+		auth = new Auth();
 		assertFalse(auth.checkValidUser("Tsotne","asjdhakjsd123"));
 	}
 

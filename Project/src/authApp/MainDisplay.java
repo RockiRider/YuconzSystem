@@ -6,10 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JToggleButton;
 
 /**
  * This class generates the GUI for the main display, which is generated after

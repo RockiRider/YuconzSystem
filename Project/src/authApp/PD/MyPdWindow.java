@@ -8,17 +8,14 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.Font;
 import java.awt.Toolkit;
 
 import authApp.AppController;
 import authApp.Auth;
-import authApp.MainDisplay;
 
 //import authApp.AppController;
 
@@ -27,7 +24,6 @@ public class MyPdWindow {
 private JFrame frame;
 
 
-private JTextField textField_2;
 private JTextField sNameField;
 private JTextField fNameField;
 private JTextField dobField;
