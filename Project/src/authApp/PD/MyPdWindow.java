@@ -53,7 +53,6 @@ public MyPdWindow(int myid) {
  */
 private void initialize(int tempid) {
 	frame = new JFrame();
-	frame.setVisible(true);
 	frame.setResizable(false);
 	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 	frame.setTitle("Yuconz System");
@@ -66,6 +65,8 @@ private void initialize(int tempid) {
 		     backFunction();
 		}
 	});
+	frame.setLocationRelativeTo(null); 
+	frame.setVisible(true);
 
 	//Get ID
 	String myid = Integer.toString(tempid);
