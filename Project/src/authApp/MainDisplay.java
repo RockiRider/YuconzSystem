@@ -99,10 +99,21 @@ public class MainDisplay {
 		JButton btnChangeAccess = new JButton("Toggle Access Level");
 		btnChangeAccess.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(accessLevel) {
+					lblAccessLevel.setText("Access Level: Normal");
+					accessLevel = false;
+				}else{
+					lblAccessLevel.setText("Access Level: High");
+					accessLevel = true;
+				}
 			}
 		});
 		btnChangeAccess.setBounds(10, 61, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnChangeAccess);
+		btnChangeAccess.setVisible(false);
+		if(tempAccessLevel) {
+			btnChangeAccess.setVisible(true);
+		}
 
 
 		

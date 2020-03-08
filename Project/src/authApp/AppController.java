@@ -62,7 +62,6 @@ public class AppController {
     public static void logOut() {
     	main(null);
     	removeMain();
-    	removeMyPd();
     }
     /**
      * Generates Personal Details Frame and Populates it

@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import authApp.AppController;
+import authApp.Auth;
 import authApp.MainDisplay;
 
 //import authApp.AppController;
@@ -57,7 +58,7 @@ private void initialize(int tempid) {
 	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 	frame.setTitle("Yuconz System");
 	frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
-	frame.setBounds(100, 100, 787, 611);
+	frame.setBounds(100, 100, 787, 534);
 	frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	frame.getContentPane().setLayout(null);
 	frame.addWindowListener(new WindowAdapter() {
@@ -84,7 +85,7 @@ private void initialize(int tempid) {
 	String emergencyContact = GetDetails.getMyCurrentDetails().getEmergencyContact();
 	String emergencyNum = GetDetails.getMyCurrentDetails().getEmergencyNum(); 
 
-    JLabel lblRole = new JLabel("Role: <dynamic>");
+    JLabel lblRole = new JLabel("Role: "+Auth.getCurrentUser().getRole());
     lblRole.setBounds(10, 11, 157, 14);
     frame.getContentPane().add(lblRole);
 
@@ -92,28 +93,19 @@ private void initialize(int tempid) {
     lblAccessLevel.setBounds(10, 36, 186, 14);
     frame.getContentPane().add(lblAccessLevel);
 
-    JButton btnLogout = new JButton("LOGOUT");
-    btnLogout.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		AppController.logOut();
-    	}
-    });
-    btnLogout.setBounds(615, 499, 89, 23);
-    frame.getContentPane().add(btnLogout);
-
-    JLabel lblNewLabel = new JLabel("Personal Details");
+    JLabel lblNewLabel = new JLabel("My Personal Details");
     lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    lblNewLabel.setBounds(119, 10, 393, 16);
+    lblNewLabel.setBounds(194, 10, 393, 16);
     frame.getContentPane().add(lblNewLabel);
 
     JLabel lblNewLabel_1 = new JLabel("Staff No: ");
     lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-    lblNewLabel_1.setBounds(208, 35, 91, 16);
+    lblNewLabel_1.setBounds(590, 35, 91, 16);
     frame.getContentPane().add(lblNewLabel_1);
 
     JLabel lblNewLabel_2 = new JLabel(myid);
     lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-    lblNewLabel_2.setBounds(310, 35, 105, 16);
+    lblNewLabel_2.setBounds(666, 35, 105, 16);
     frame.getContentPane().add(lblNewLabel_2);
 
     JLabel lblNewLabel_3 = new JLabel("Name");
@@ -240,7 +232,7 @@ private void initialize(int tempid) {
     		backFunction();
     	}
     });
-    btnBack.setBounds(37, 499, 89, 23);
+    btnBack.setBounds(346, 408, 89, 23);
     frame.getContentPane().add(btnBack);
 
     
