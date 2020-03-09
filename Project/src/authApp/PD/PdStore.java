@@ -13,7 +13,7 @@ public class PdStore {
 	private String mobile;
 	private String emergencyContact;
 	private String emergencyNum;
-	
+	 
 	public PdStore() {
 		//For Testing Purposes
 		
@@ -52,7 +52,7 @@ public class PdStore {
 		return postcode;
 	}
 	public String getCounty() {
-		return emergencyNum;
+		return county;
 	}
 	public String getTelenum() {
 		return telenum;
@@ -91,7 +91,7 @@ public class PdStore {
 		 postcode = input;
 	}
 	public void setCounty(String input) {
-		 postcode = input;
+		 county = input;
 	}
 	public void setTelenum(String input) {
 		 telenum = input;
