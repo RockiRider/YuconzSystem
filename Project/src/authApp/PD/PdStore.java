@@ -15,20 +15,7 @@ public class PdStore {
 	private String emergencyNum;
 	 
 	public PdStore() {
-		//For Testing Purposes
-		
-		sName = "Tsot";
-		fName = "Gvad";
-		dob = "06/11/1997";
-		address1 = "Pallamon";
-		address2 = "Court";
-		city = "London";
-		postcode = "G6 7WA";
-		county = "Kent";
-		telenum = "08812381832";
-		mobile = "07737844935";
-		emergencyContact = "Aj";
-		emergencyNum = "07769482183";
+		//Empty
 	}
 	public String getFirstName() {
 		return sName;

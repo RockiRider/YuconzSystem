@@ -7,11 +7,11 @@ import javax.swing.JOptionPane;
 public class GetDetails {
 	
 	private Connection myDb = null;
-	private static PdStore currentDetails;
+	private static MyPdStore myCurrentDetails;
 	
 	public GetDetails(int id) {
 		connectToDb();
-		currentDetails = new PdStore();
+		myCurrentDetails = new MyPdStore();
 	}
 	
 	/**
@@ -73,7 +73,6 @@ public class GetDetails {
 			Statement stmt = conn.createStatement();
 			ResultSet rs  = stmt.executeQuery(sql)){
 			
-				System.out.println("Inside Try");
 				int foundId = rs.getInt("id");
 				if(foundId == userId) {
 					// Get new details from database
@@ -92,18 +91,18 @@ public class GetDetails {
 			
 				
 					// Set new Details
-					currentDetails.setFirstName(firstName);
-					currentDetails.setLastName(lastName);
-					currentDetails.setDoB(dob);
-					currentDetails.setAddress1(address1);
-					currentDetails.setAddress2(address2);
-					currentDetails.setCity(city);
+					myCurrentDetails.setFirstName(firstName);
+					myCurrentDetails.setLastName(lastName);
+					myCurrentDetails.setDoB(dob);
+					myCurrentDetails.setAddress1(address1);
+					myCurrentDetails.setAddress2(address2);
+					myCurrentDetails.setCity(city);
 					//detailStorage.setCounty(county);
-					currentDetails.setPostcode(postCode);
-					currentDetails.setMobile(mobileNum);
-					currentDetails.setTelenum(telephoneNum);
-					currentDetails.setEmergencyContact(emergencyContact);
-					currentDetails.setEmergencyNum(emergencyNum);
+					myCurrentDetails.setPostcode(postCode);
+					myCurrentDetails.setMobile(mobileNum);
+					myCurrentDetails.setTelenum(telephoneNum);
+					myCurrentDetails.setEmergencyContact(emergencyContact);
+					myCurrentDetails.setEmergencyNum(emergencyNum);
 			}else {
 				JOptionPane.showMessageDialog(null,
 		    		    "Connection Made but User not found!",
@@ -121,7 +120,7 @@ public class GetDetails {
 		
 	}
 	
-	public static PdStore getMyCurrentDetails() {
-		return currentDetails;
+	public static MyPdStore getMyCurrentDetails() {
+		return myCurrentDetails;
 	}
 }
