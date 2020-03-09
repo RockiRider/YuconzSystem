@@ -82,7 +82,7 @@ public class GetDetails {
 					String address1 = rs.getString("address1");
 					String address2 = rs.getString("address2");
 					String city = rs.getString("city");
-					//String county = rs.getString("county");
+					String county = rs.getString("county");
 					String postCode = rs.getString("postcode");
 					String mobileNum = rs.getString("mobileNum");
 					String telephoneNum = rs.getString("telephoneNum");
@@ -97,7 +97,7 @@ public class GetDetails {
 					myCurrentDetails.setAddress1(address1);
 					myCurrentDetails.setAddress2(address2);
 					myCurrentDetails.setCity(city);
-					//detailStorage.setCounty(county);
+					myCurrentDetails.setCounty(county);
 					myCurrentDetails.setPostcode(postCode);
 					myCurrentDetails.setMobile(mobileNum);
 					myCurrentDetails.setTelenum(telephoneNum);
