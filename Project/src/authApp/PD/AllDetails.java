@@ -4,12 +4,12 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
-public class GetDetails {
+public class AllDetails {
 	
 	private Connection myDb = null;
 	private static MyPdStore myCurrentDetails;
 	
-	public GetDetails(int id) {
+	public AllDetails(int id) {
 		connectToDb();
 		myCurrentDetails = new MyPdStore();
 	}
@@ -64,7 +64,7 @@ public class GetDetails {
 	/**
 	* Loads the Details?
 	*/
-	public void pushDetails(int userId) {
+	public void pullDetails(int userId) {
 		String sql = "select * from PersonalDetails where id='"+userId+"'";
 		
 		connectToDb();
@@ -76,8 +76,8 @@ public class GetDetails {
 				int foundId = rs.getInt("id");
 				if(foundId == userId) {
 					// Get new details from database
-					String firstName = rs.getString("sName");
-					String lastName = rs.getString("fName");
+					String firstName = rs.getString("fName");
+					String lastName = rs.getString("sName");
 					String dob = rs.getString("dob");
 					String address1 = rs.getString("address1");
 					String address2 = rs.getString("address2");
@@ -118,6 +118,48 @@ public class GetDetails {
 		
 		
 		
+	}
+	
+
+	public void pushDetails(int id) {
+		
+		
+		
+		String sql = "UPDATE PersonalDetails SET fName = ? , "
+                + "sName = ? , " + "dob = ? , " + "address1 = ? , " + "address2 = ? , " + "city = ? , " 
+				+ "county = ? , " + "postcode = ? , " + "telephoneNum = ? , " + "mobileNum = ? , " 
+                + "emergencyContact = ? , " + "emergencyContactNum = ? "
+                + "WHERE id = ?";
+		connectToDb();
+		
+        try (Connection conn = myDb;
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+ 
+            // set the corresponding param
+            pstmt.setString(1, getMyCurrentDetails().getFirstName());
+            pstmt.setString(2, getMyCurrentDetails().getLastName());
+            pstmt.setString(3, getMyCurrentDetails().getDoB());
+            
+            
+            pstmt.setString(4, getMyCurrentDetails().getAddress1());
+            pstmt.setString(5, getMyCurrentDetails().getAddress2());
+            pstmt.setString(6, getMyCurrentDetails().getCity());
+            pstmt.setString(7, getMyCurrentDetails().getCounty());
+            pstmt.setString(8, getMyCurrentDetails().getPostcode());
+            pstmt.setString(9, getMyCurrentDetails().getTelenum());
+            pstmt.setString(10, getMyCurrentDetails().getMobile());
+            pstmt.setString(11, getMyCurrentDetails().getEmergencyContact());
+            pstmt.setString(12, getMyCurrentDetails().getEmergencyNum());
+            pstmt.setInt(13, id);
+            		
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+        	JOptionPane.showMessageDialog(null,
+	    		    "Cannot connect to the Database",
+	    		    "Error",
+	    		    JOptionPane.ERROR_MESSAGE);
+        }
 	}
 	
 	public static MyPdStore getMyCurrentDetails() {
