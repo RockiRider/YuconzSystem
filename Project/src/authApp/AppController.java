@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 
 import authApp.PD.*;
+import authApp.Search.*;
 
 /**
 This is the App Controller, essentially the main class for the Application that brings everything together.
@@ -15,7 +16,8 @@ public class AppController {
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdWindow myPdFrame;
-	private static AllDetails myDetails;
+	private static AllDetails myDetailsFrame;
+	private static UsersDisplay searchFrame;
 	
 	/**
 	* Launch the application.
@@ -70,9 +72,9 @@ public class AppController {
     public static void generatePd(int id) {
     	
     	mainFrame.hide();
-    	myDetails = new AllDetails(id);
-    	if(myDetails.checkDb(id)) {
-    		myDetails.pullDetails(id);
+    	myDetailsFrame = new AllDetails(id);
+    	if(myDetailsFrame.checkDb(id)) {
+    		myDetailsFrame.pullDetails(id);
     		myPdFrame = new MyPdWindow(id);
     	}else{
     		JOptionPane.showMessageDialog(null,
@@ -81,10 +83,14 @@ public class AppController {
         		    JOptionPane.ERROR_MESSAGE);
     		showMain();
     	}
+    }
+    public static void showLookUp() {
+    	
+    	searchFrame = new UsersDisplay();
     	
     }
     public static void saveMyDetails(int id) {
-    	myDetails.pushDetails(id);
+    	myDetailsFrame.pushDetails(id);
     }
     public static void showMain() {
     	mainFrame.show();
