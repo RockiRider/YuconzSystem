@@ -55,7 +55,7 @@ a {
 
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/img/background1.jpg");
-  height: 30%;
+  height: 50%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -92,28 +92,6 @@ a {
 	height: 100%
 }
 
-
-
-footer {
-	margin: 0 5vh 30px 5vh;
-}
-
-footer p,
-.footer-links {
-	display: inline-block;
-}
-
-.footer-links {
-	float: right;
-}
-
-.footer-links a {
-	margin-left: 20px;
-}
-
-.footer-links a:hover {
-	text-decoration: underline black;
-}
 
 @media only screen and (max-width: 770px) {
 
@@ -207,39 +185,22 @@ appears on the left side of the page.
 
 #menu {
     margin-left: -150px; /* "#menu" width */
-    width: 270px;
+    width: 20%;
     position: relative;
-		height: 100%;
+    height: 100%;
     z-index: 1000; /* so the menu or its navicon stays above all content */
-    background: #333;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    background: #e5e5e6;
+    overflow: hidden;
 }
     /*
     All anchors inside the menu should be styled like this.
     */
     #menu a {
-        color: white;
+        color: #659EE4;
         border: none;
-        padding: 0.6em 0 0.6em 0.6em;
+        padding: 0.9em 0 0.9em 0.5em;
     }
 
-    /*
-    Remove all background/borders, since we are applying them to #menu.
-    */
-     #menu .pure-menu,
-     #menu .pure-menu ul {
-        border: none;
-        background: transparent;
-    }
-
-    /*
-    Add that light border to separate items into groups.
-    */
-    #menu .pure-menu ul,
-    #menu .pure-menu .menu-item-divided {
-        border-top: 1px solid #333;
-    }
 
     This styles the selected menu item `<li>`.
     */
@@ -392,21 +353,13 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 }
 
 .single {
-
-	display: block;
-  color: white;
-  background: #659EE4;
-
-  box-shadow: 0 1px 0 #659EE4 inset, 0 -1px 0 #333 inset;
+  display: block;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-  padding: 10px;
-	padding-left: 0;
-
-
-
+    
 }
-
-
+.single a{
+    display: block;
+}
 
 .area {
 	width: 50%
@@ -425,10 +378,9 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 .dropdown [data-toggle="dropdown"] {
   display: block;
   color: #659EE4;
-  background: #659EE4;
   box-shadow: 0 0px 0 #333 inset, 0 0px 0 #333 inset;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-	padding-left: 5px;
+  padding-left: 5px;
 
 }
 
@@ -437,7 +389,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   display: block;
   content: '\25BC';
   font-size: 0.7em;
-  color: #fff;
+  color: #659EE4;
   top: 13px;
   right: 10px;
   -moz-transform: rotate(0deg);
@@ -453,7 +405,6 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   max-height: 0;
   overflow: hidden;
   list-style: none;
-
   padding: 0;
   margin: 0;
   -moz-transform: scaleY(0);
@@ -473,27 +424,31 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   -webkit-animation: hideAnimation 0.4s ease-out;
 }
 .dropdown > .dropdown-menu li {
+  margin-left: 8px;
   padding: 0;
+  padding-left: 10px;
+    border-left: 1px solid #659EE4;
+
 }
 .dropdown > .dropdown-menu li a {
   display: block;
   color: #6f6f6f;
   background: ;
-  -moz-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
-  -webkit-box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
-  box-shadow: 0 1px 0 white inset, 0 -1px 0 #d5d5d5 inset;
   text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
   padding: 90px 10px;
 
+
 }
 .dropdown-menu {
-
-		list-style-type: none;
-
-
+    list-style-type: none;
 }
-.dropdown > .dropdown-menu li a:hover {
-  background: #f6f6f6;
+
+.pure-menu li a{
+    padding-top: 10px;
+    margin-left: 10px;
+}
+.pure-menu li:hover{
+    background: #f6f6f6;
 }
 .dropdown > input[type="checkbox"] {
   opacity: 0;
@@ -744,3 +699,34 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 li a {
 	color: white;
 }
+
+.menu-border li{
+    border-left: 1px solid #659EE4;
+}
+..menu-border li:target{
+    border-left: 5px solid #659EE4;
+}
+
+/* Footer */
+
+footer {
+	margin: 0 5vh 30px 5vh;
+}
+
+footer p,
+.footer-links {
+	display: inline-block;
+}
+
+.footer-links {
+	float: right;
+}
+
+.footer-links a {
+	margin-left: 20px;
+}
+
+.footer-links a:hover {
+	text-decoration: underline black;
+}
+
