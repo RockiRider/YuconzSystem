@@ -15,7 +15,7 @@ public class AppController {
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdWindow myPdFrame;
-	private static GetDetails myDetails;
+	private static AllDetails myDetails;
 	
 	/**
 	* Launch the application.
@@ -70,9 +70,9 @@ public class AppController {
     public static void generatePd(int id) {
     	
     	mainFrame.hide();
-    	myDetails = new GetDetails(id);
+    	myDetails = new AllDetails(id);
     	if(myDetails.checkDb(id)) {
-    		myDetails.pushDetails(id);
+    		myDetails.pullDetails(id);
     		myPdFrame = new MyPdWindow(id);
     	}else{
     		JOptionPane.showMessageDialog(null,
@@ -82,6 +82,9 @@ public class AppController {
     		showMain();
     	}
     	
+    }
+    public static void saveMyDetails(int id) {
+    	myDetails.pushDetails(id);
     }
     public static void showMain() {
     	mainFrame.show();
