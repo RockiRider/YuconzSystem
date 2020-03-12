@@ -4,11 +4,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import authApp.PD.MyPdWindow;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -19,29 +16,27 @@ import javax.swing.event.ListSelectionListener;
  */
 public class UsersDisplay {
 
+	
 	private JFrame frame;
-	private String[] columnNames = {"First Name","Last Name","Role"};
-	// Data to be displayed in the JTable 
-    String[][] data = { 
-        { "Kundan Kumar Jha", "4031", "CSE" }, 
-        { "Anand Jha", "6014", "IT" } 
-    }; 
+	private static UserOverview userInfo;
+	private String[] columnNames = {"Staff ID","First Name","Last Name","Role"};
+
 
     // Column Names  
     private JTable table;
-
+    
 
 	/**
 	 * Create the application.
 	 */
-	public UsersDisplay() {
-		initialize();
+	public UsersDisplay(String[][] input) {
+		initialize(input);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String[][] input) {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
@@ -50,7 +45,7 @@ public class UsersDisplay {
 		frame.setBounds(100, 100, 718, 534);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);	//Needs to be changed
 		//frame.getContentPane().setLayout(null);
-		table = new JTable(data, columnNames);
+		table = new JTable(input, columnNames);
 		table.setBounds(10, 41, 528, 286);
 		table.setDefaultEditor(Object.class, null);
 		JScrollPane sp = new JScrollPane(table); 
@@ -64,9 +59,18 @@ public class UsersDisplay {
 	            // print first column value from selected row
 	        	//We want to get their staff id
 	            System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+	            
+	            userInfo = new UserOverview();
 	        }
 	    });
-		
-	
+	}
+	public void die() {
+		frame.dispose();
+	}
+	public void hide() {
+		frame.setVisible(false);
+	}
+	public void show() {
+		frame.setVisible(true);
 	}
 }

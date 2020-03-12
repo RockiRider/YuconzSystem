@@ -1,6 +1,9 @@
 package authApp;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 import authApp.PD.*;
@@ -16,7 +19,7 @@ public class AppController {
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdWindow myPdFrame;
-	private static AllDetails myDetailsFrame;
+	private static AllDetails detailsLookUp;
 	private static UsersDisplay searchFrame;
 	
 	/**
@@ -72,9 +75,9 @@ public class AppController {
     public static void generatePd(int id) {
     	
     	mainFrame.hide();
-    	myDetailsFrame = new AllDetails(id);
-    	if(myDetailsFrame.checkDb(id)) {
-    		myDetailsFrame.pullDetails(id);
+    	detailsLookUp = new AllDetails(id);
+    	if(detailsLookUp.checkDb(id)) {
+    		detailsLookUp.pullDetails(id);
     		myPdFrame = new MyPdWindow(id);
     	}else{
     		JOptionPane.showMessageDialog(null,
@@ -86,11 +89,12 @@ public class AppController {
     }
     public static void showLookUp() {
     	
-    	searchFrame = new UsersDisplay();
+    	Db connection = new Db();
+    	searchFrame = new UsersDisplay(connection.getEmployees());
     	
     }
     public static void saveMyDetails(int id) {
-    	myDetailsFrame.pushDetails(id);
+    	detailsLookUp.pushDetails(id);
     }
     public static void showMain() {
     	mainFrame.show();

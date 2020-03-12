@@ -14,6 +14,9 @@ import javax.swing.JButton;
 public class UserOverview {
 
 	private JFrame frame;
+	private boolean exists;
+	private String fullName =  "Dynamic Taylor";
+	
 	/**
 	 * Create the application.
 	 */
@@ -32,9 +35,9 @@ public class UserOverview {
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel(fullName);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(152, 11, 139, 38);
+		lblNewLabel.setBounds(112, 11, 218, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Create Personal Details");
@@ -46,5 +49,14 @@ public class UserOverview {
 		frame.getContentPane().add(btnNewButton_1);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 	//Needs to be changed
+	}
+	public void die() {
+		frame.dispose();
+	}
+	public void hide() {
+		frame.setVisible(false);
+	}
+	public void show() {
+		frame.setVisible(true);
 	}
 }

@@ -1,9 +1,16 @@
 package authApp.PD;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+
+/**
+ * This class handles all communication to the SQLite database reguarding anything to do with Employee Personal Details
+ * @author Tsotne
+ *
+ */
 public class AllDetails {
 	
 	private Connection myDb = null;
@@ -23,12 +30,10 @@ public class AllDetails {
 			 // load the SQLite-JDBC driver using the current class loader
 		      Class.forName("org.sqlite.JDBC");
 		      myDb = DriverManager.getConnection("jdbc:sqlite:Auth.db");
-		      
 		      Statement statement = myDb.createStatement();
 		      statement.setQueryTimeout(30);  // set timeout to 30 seconds.
 		      return myDb;
 		}catch(Exception e){
-			
 			JOptionPane.showMessageDialog(null,
 	    		    "Cannot Connect to DB",
 	    		    "Error",
@@ -62,7 +67,8 @@ public class AllDetails {
 	}
 	
 	/**
-	* Loads the Details?
+	* Loads the Details from the Database that matches the usersId
+	* @param userId
 	*/
 	public void pullDetails(int userId) {
 		String sql = "select * from PersonalDetails where id='"+userId+"'";
@@ -115,16 +121,13 @@ public class AllDetails {
 	    		    "Error",
 	    		    JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
-		
 	}
-	
 
+	/**
+	 * This method saves the new information and pushes it onto the database
+	 * @param id
+	 */
 	public void pushDetails(int id) {
-		
-		
-		
 		String sql = "UPDATE PersonalDetails SET fName = ? , "
                 + "sName = ? , " + "dob = ? , " + "address1 = ? , " + "address2 = ? , " + "city = ? , " 
 				+ "county = ? , " + "postcode = ? , " + "telephoneNum = ? , " + "mobileNum = ? , " 
@@ -162,6 +165,11 @@ public class AllDetails {
         }
 	}
 	
+	
+	/**
+	 * Returns current Users Personal Details
+	 * @return myCurrentDetails
+	 */
 	public static MyPdStore getMyCurrentDetails() {
 		return myCurrentDetails;
 	}
