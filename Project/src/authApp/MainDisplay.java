@@ -16,7 +16,7 @@ public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
 	private boolean accessLevel;
-	boolean tempAccessLevel;
+	private boolean tempAccessLevel;
 
 	/**
 	 * Create the Frame.

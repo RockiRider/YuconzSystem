@@ -11,8 +11,17 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import authApp.User;
+import authApp.Roles.Director;
+import authApp.Roles.Employee;
+import authApp.Roles.HRDirector;
+import authApp.Roles.HREmployee;
+import authApp.Roles.Manager;
+import authApp.Roles.Reviewer;
+
 public class Db {
 
+	private static User selectedUser;
 	private Connection myDb = null;
 	private ArrayList<ArrayList <String>> result = new ArrayList<ArrayList<String>>();
 	private String[][] data;
@@ -21,9 +30,12 @@ public class Db {
 		connectToDb();
 		populateAllEmployees();
 		convertData();
-		
 	}
 	
+	/**
+	 * Connects to the Database
+	 * @return myDb
+	 */
 	public Connection connectToDb() {
 		try {
 			 // load the SQLite-JDBC driver using the current class loader
@@ -43,7 +55,7 @@ public class Db {
 	}
 	
 	/**
-	 * Gets all Employees inside the Employee Table in the Database.
+	 * Gets all Employees inside the Employee Table in the Database and places the Data inside ArrayLists.
 	 */
 	public void populateAllEmployees() {
 		
@@ -64,8 +76,6 @@ public class Db {
 			    }
 			    result.add(row);
 			}
-			System.out.println(Arrays.deepToString(result.toArray()));
-			
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(null,
 	    		    "Cannot connect to the Database",
@@ -73,12 +83,36 @@ public class Db {
 	    		    JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	/**
+	 * Converts ArrayLists into a 2D Array, that can be used by the JTable.
+	 */
 	public void convertData(){
 		data = result.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);
-		System.out.println(Arrays.deepToString(result.toArray()));
 	}
+	public void findUser(int id) {
+		
+		String sql = "select * from Employees where id='"+id+"'";
+		connectToDb();
+		try(Connection conn = myDb;
+				Statement stmt = conn.createStatement();
+				ResultSet rs  = stmt.executeQuery(sql)){
+			
+				String foundRole =  rs.getString("role");
+				selectedUser = new User(rs.getString("fName"), rs.getString("sName"), foundRole, false);
+		}catch(SQLException e){
+			
+		}
+	}
+	
+	/**
+	 * Get Method for the 2D Array
+	 * @return data
+	 */
 	public String[][] getEmployees() {
 		return data;
+	}
+	public static User getSelectedUser() {
+		return selectedUser;
 	}
 	
 }

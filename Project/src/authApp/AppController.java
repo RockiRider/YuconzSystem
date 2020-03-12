@@ -21,6 +21,8 @@ public class AppController {
 	private static MyPdWindow myPdFrame;
 	private static AllDetails detailsLookUp;
 	private static UsersDisplay searchFrame;
+	private static UserOverview userInfo;
+	private static Db connection;
 	
 	/**
 	* Launch the application.
@@ -88,10 +90,13 @@ public class AppController {
     	}
     }
     public static void showLookUp() {
-    	
-    	Db connection = new Db();
+    	connection = new Db();
     	searchFrame = new UsersDisplay(connection.getEmployees());
-    	
+    }
+    public static void selectedDetails(String id) {
+    	int input = Integer.parseInt(id);
+    	connection.findUser(input);
+    	userInfo = new UserOverview();
     }
     public static void saveMyDetails(int id) {
     	detailsLookUp.pushDetails(id);
@@ -105,8 +110,5 @@ public class AppController {
     public static void removeMyPd() {
     	myPdFrame.die();
     }
-
-
-   
     
 }
