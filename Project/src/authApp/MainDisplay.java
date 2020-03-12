@@ -111,7 +111,7 @@ public class MainDisplay {
 		JButton btnEmployees = new JButton("All Employees");
 		btnEmployees.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				AppController.showLookUp();
 			}
 		});
 		btnEmployees.setBounds(271, 235, 157, 23);
@@ -120,9 +120,6 @@ public class MainDisplay {
 		if(tempAccessLevel) {
 			btnChangeAccess.setVisible(true);
 		}
-
-
-		
 
 	}
 	public void hide() {
