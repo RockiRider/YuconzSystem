@@ -94,17 +94,7 @@ public class MainDisplay {
 		btnMyPd.setBounds(271, 164, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnMyPd);
 		JButton btnChangeAccess = new JButton("Toggle Access Level");
-		btnChangeAccess.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(accessLevel) {
-					lblAccessLevel.setText("Access Level: Normal");
-					accessLevel = false;
-				}else{
-					lblAccessLevel.setText("Access Level: High");
-					accessLevel = true;
-				}
-			}
-		});
+		
 		btnChangeAccess.setBounds(10, 61, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnChangeAccess);
 		
@@ -117,8 +107,29 @@ public class MainDisplay {
 		btnEmployees.setBounds(271, 235, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnEmployees);
 		btnChangeAccess.setVisible(false);
+		
+		btnChangeAccess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(accessLevel) {
+					lblAccessLevel.setText("Access Level: Normal");
+					btnEmployees.setVisible(false);
+					accessLevel = false;
+					
+				}else{
+					lblAccessLevel.setText("Access Level: High");
+					btnEmployees.setVisible(true);
+					accessLevel = true;
+					
+				}
+			}
+		});
+		
 		if(tempAccessLevel) {
 			btnChangeAccess.setVisible(true);
+		}
+		if(!accessLevel) {
+			btnEmployees.setVisible(false);
+			
 		}
 
 	}
