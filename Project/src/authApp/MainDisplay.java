@@ -16,7 +16,7 @@ public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
 	private boolean accessLevel;
-	boolean tempAccessLevel;
+	private boolean tempAccessLevel;
 
 	/**
 	 * Create the Frame.
@@ -107,13 +107,19 @@ public class MainDisplay {
 		});
 		btnChangeAccess.setBounds(10, 61, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnChangeAccess);
+		
+		JButton btnEmployees = new JButton("All Employees");
+		btnEmployees.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.showLookUp();
+			}
+		});
+		btnEmployees.setBounds(271, 235, 157, 23);
+		frmYuconzSystem.getContentPane().add(btnEmployees);
 		btnChangeAccess.setVisible(false);
 		if(tempAccessLevel) {
 			btnChangeAccess.setVisible(true);
 		}
-
-
-		
 
 	}
 	public void hide() {

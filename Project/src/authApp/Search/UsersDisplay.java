@@ -3,55 +3,77 @@ package authApp.Search;
 import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import authApp.PD.MyPdWindow;
-import javax.swing.JLabel;
-import javax.swing.JTable;
 
+import authApp.AppController;
+import authApp.PD.MyPdWindow;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+/**
+ * Generates a JFrame with a JTable that is filled with all current Employees in the Database.
+ * @author Tsotne
+ *
+ */
 public class UsersDisplay {
 
+	
 	private JFrame frame;
-	private JTable table;
-	private String[] columnNames = {"First Name","Last Name","Role"};
+	private String[] columnNames = {"Staff ID","First Name","Last Name","Role"};
 
 
+    // Column Names  
+    static JTable table;
+    
 
 	/**
 	 * Create the application.
 	 */
-	public UsersDisplay() {
-		initialize();
+	public UsersDisplay(String[][] input) {
+		initialize(input);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String[][] input) {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
-		frame.setBounds(100, 100, 787, 534);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frame.setBounds(100, 100, 718, 534);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);	//Needs to be changed
+		table = new JTable(input, columnNames);
+		table.setBounds(10, 41, 528, 286);
+		table.setDefaultEditor(Object.class, null);
+		JScrollPane sp = new JScrollPane(table); 
+        frame.getContentPane().add(sp); 
+		//frame.setLocationRelativeTo(null); 
+		frame.setVisible(true);
 		
-		JLabel lblFName = new JLabel("First Name");
-		lblFName.setBounds(10, 11, 69, 26);
-		frame.getContentPane().add(lblFName);
-		
-		JLabel lblRoles = new JLabel("Roles");
-		lblRoles.setBounds(158, 11, 69, 26);
-		frame.getContentPane().add(lblRoles);
-		
-		JLabel lblSName = new JLabel("Last Name");
-		lblSName.setBounds(87, 17, 61, 14);
-		frame.getContentPane().add(lblSName);
-		
-		table = new JTable();
-		table.setColumnSelectionAllowed(true);
-		table.setBounds(30, 62, 307, 316);
-		frame.getContentPane().add(table);
-		frame.setLocationRelativeTo(null); 
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+	        public void valueChanged(ListSelectionEvent event) {
+	            //do some actions here, for example
+	            //print first column value from selected row
+	        	//We want to get their staff id
+	            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+	        	int column = 0;
+	        	int row = table.getSelectedRow();
+	        	String value = table.getModel().getValueAt(row, column).toString();
+	        	AppController.selectedDetails(value);
+	        	table.setEnabled(false);
+	        }
+	    });
+	}
+	public void die() {
+		frame.dispose();
+	}
+	public void hide() {
+		frame.setVisible(false);
+	}
+	public void show() {
 		frame.setVisible(true);
 	}
 }

@@ -1,9 +1,13 @@
 package authApp;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 import authApp.PD.*;
+import authApp.Search.*;
 
 /**
 This is the App Controller, essentially the main class for the Application that brings everything together.
@@ -15,7 +19,10 @@ public class AppController {
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdWindow myPdFrame;
-	private static AllDetails myDetails;
+	private static AllDetails detailsLookUp;
+	private static UsersDisplay searchFrame;
+	private static UserOverview userInfo;
+	private static Db connection;
 	
 	/**
 	* Launch the application.
@@ -70,9 +77,9 @@ public class AppController {
     public static void generatePd(int id) {
     	
     	mainFrame.hide();
-    	myDetails = new AllDetails(id);
-    	if(myDetails.checkDb(id)) {
-    		myDetails.pullDetails(id);
+    	detailsLookUp = new AllDetails(id);
+    	if(detailsLookUp.checkDb(id)) {
+    		detailsLookUp.pullDetails(id);
     		myPdFrame = new MyPdWindow(id);
     	}else{
     		JOptionPane.showMessageDialog(null,
@@ -81,10 +88,18 @@ public class AppController {
         		    JOptionPane.ERROR_MESSAGE);
     		showMain();
     	}
-    	
+    }
+    public static void showLookUp() {
+    	connection = new Db();
+    	searchFrame = new UsersDisplay(connection.getEmployees());
+    }
+    public static void selectedDetails(String id) {
+    	int input = Integer.parseInt(id);
+    	connection.findUser(input);
+    	userInfo = new UserOverview();
     }
     public static void saveMyDetails(int id) {
-    	myDetails.pushDetails(id);
+    	detailsLookUp.pushDetails(id);
     }
     public static void showMain() {
     	mainFrame.show();
@@ -95,8 +110,5 @@ public class AppController {
     public static void removeMyPd() {
     	myPdFrame.die();
     }
-
-
-   
     
 }
