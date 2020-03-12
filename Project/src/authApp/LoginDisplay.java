@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 
 /**
@@ -53,8 +54,9 @@ public class LoginDisplay{
 		
 		
 		JLabel lblTitle = new JLabel("Yuconz");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Calibri", Font.BOLD, 28));
-		lblTitle.setBounds(177, 11, 88, 27);
+		lblTitle.setBounds(149, 11, 145, 27);
 		frmYuconzSystem.getContentPane().add(lblTitle);
 		
 		passwordField = new JPasswordField();
