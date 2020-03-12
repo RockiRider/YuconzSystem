@@ -6,18 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import authApp.User;
-import authApp.Roles.Director;
-import authApp.Roles.Employee;
-import authApp.Roles.HRDirector;
-import authApp.Roles.HREmployee;
-import authApp.Roles.Manager;
-import authApp.Roles.Reviewer;
+
 
 public class Db {
 
