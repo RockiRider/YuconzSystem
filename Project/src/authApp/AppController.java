@@ -23,7 +23,7 @@ public class AppController {
 	private static UsersDisplay searchFrame;
 	private static UserOverview userInfo;
 	private static Db connection;
-	private static PdFrame selectedPersonalDetails;
+	private static PdCreateFrame createPersonalDetails;
 	
 	/**
 	* Launch the application.
@@ -116,14 +116,16 @@ public class AppController {
     
     public static void createDetails(int id) {
     	connection.creatingPd();
-    	selectedPersonalDetails = new PdFrame(id);
+    	createPersonalDetails = new PdCreateFrame(id);
     }
     
     public static void viewDetails(int id) {
     	
     }
     
-    
+    public static void insertMyDetails(int id) {
+    	connection.insertNew(id);
+    }
     public static void saveMyDetails(int id) {
     	detailsLookUp.pushDetails(id);
     }

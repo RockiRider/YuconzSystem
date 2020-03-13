@@ -62,6 +62,7 @@ public class UserOverview {
 		btncreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AppController.createDetails(id);
+				die();
 			}
 		});
 		btncreateBtn.setBounds(112, 99, 218, 32);

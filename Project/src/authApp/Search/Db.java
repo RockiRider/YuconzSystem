@@ -2,6 +2,7 @@ package authApp.Search;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -122,6 +123,7 @@ public class Db {
 			Statement stmt = conn.createStatement();
 			ResultSet rs  = stmt.executeQuery(sql)){
 				if(rs.getInt("id") == userId) {
+					
 					rs.close();
 					myDb.close();
 					return true;
@@ -133,6 +135,9 @@ public class Db {
 		return false;
 	}
 	
+	/**
+	 * Sets user with no Personal Details document with empty fields in the selectedUserDetails object.
+	 */
 	public void creatingPd() {
 		selectedUserDetails.setFirstName(" ");
 		selectedUserDetails.setLastName(" ");
@@ -146,6 +151,32 @@ public class Db {
 		selectedUserDetails.setTelenum(" ");
 		selectedUserDetails.setEmergencyNum(" ");
 		selectedUserDetails.setEmergencyContact(" ");
+	}
+	public void insertNew(int id) {
+		connectToDb();
+		String sql = "INSERT INTO PersonalDetails(id,sName,fName,dob,address1,address2,city,county,postcode,telephoneNum,mobileNum,emergencyContact,emergencyContactNum) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		try(Connection conn = myDb;
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			pstmt.setInt(1,id);
+			pstmt.setString(2, selectedUserDetails.getLastName());
+            pstmt.setString(3, selectedUserDetails.getFirstName());
+            pstmt.setString(4, selectedUserDetails.getDoB());
+            pstmt.setString(5, selectedUserDetails.getAddress1());
+            pstmt.setString(6, selectedUserDetails.getAddress2());
+            pstmt.setString(7, selectedUserDetails.getCity());
+            pstmt.setString(8, selectedUserDetails.getCounty());
+            pstmt.setString(9, selectedUserDetails.getPostcode());
+            pstmt.setString(10, selectedUserDetails.getTelenum());
+            pstmt.setString(11, selectedUserDetails.getMobile());
+            pstmt.setString(12, selectedUserDetails.getEmergencyContact());
+            pstmt.setString(13, selectedUserDetails.getEmergencyNum());
+		}catch(SQLException e) {
+			JOptionPane.showMessageDialog(null,
+	    		    "Cannot connect to the Database",
+	    		    "Error",
+	    		    JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/**

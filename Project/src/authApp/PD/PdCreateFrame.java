@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 import authApp.AppController;
 import authApp.Search.Db;
 
-public class PdFrame {
+public class PdCreateFrame {
 
 	private JFrame frame;
 	private JTextField fNameField;
@@ -34,7 +34,7 @@ public class PdFrame {
 	/**
 	 * Create the application.
 	 */
-	public PdFrame(int id) {
+	public PdCreateFrame(int id) {
 		initialize(id);
 	}
 
@@ -44,7 +44,7 @@ public class PdFrame {
 	private void initialize(int id) {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(PdFrame.class.getResource("/authApp/img/LogoNoText.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(PdCreateFrame.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
 		String input = Integer.toString(id);
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
@@ -75,17 +75,19 @@ public class PdFrame {
 		String emergencyContact = Db.getSelectedUserDetails().getEmergencyContact();
 		String emergencyNum = Db.getSelectedUserDetails().getEmergencyNum(); 
 		
+		String realFName = Db.getSelectedUser().getFirstName();
+		String realLName = Db.getSelectedUser().getLastName();
+		String role = Db.getSelectedUser().getRole();
 		
-		
-		JLabel lblRole = new JLabel("Role: <dynamic>");
+		JLabel lblRole = new JLabel("Role: "+role);
 	    lblRole.setBounds(10, 11, 157, 14);
 	    frame.getContentPane().add(lblRole);
 
-	    JLabel lblAccessLevel = new JLabel(firstName+"'s Access Level: Normal");
+	    JLabel lblAccessLevel = new JLabel(realFName+"'s Access Level: Normal");
 	    lblAccessLevel.setBounds(10, 36, 209, 14);
 	    frame.getContentPane().add(lblAccessLevel);
 
-	    JLabel lblNewLabel = new JLabel(firstName+" "+lastName+"'s Personal Details");
+	    JLabel lblNewLabel = new JLabel(realFName+" "+realLName+"'s Personal Details");
 	    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblNewLabel.setBounds(157, 10, 454, 16);
 	    frame.getContentPane().add(lblNewLabel);
@@ -228,8 +230,8 @@ public class PdFrame {
 	    frame.getContentPane().add(btnBack);
 	    
 	    
-	    JButton btnSaveDetails = new JButton("Save");
-	    btnSaveDetails.addActionListener(new ActionListener() {
+	    JButton btnCreateDetails = new JButton("Create");
+	    btnCreateDetails.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
 	    		//Get Entered Details from TextFields.
@@ -261,15 +263,15 @@ public class PdFrame {
 	    		Db.getSelectedUserDetails().setEmergencyNum(newEmergencyNum);
 	    		Db.getSelectedUserDetails().setEmergencyContact(newEmergencyContact);
 	    		
-	    		//AppController.saveMyDetails(tempid);
+	    		AppController.insertMyDetails(id);
 	    		
 	    		saveAndBack();
 	    		
 	    		
 	    	}
 	    });
-	    btnSaveDetails.setBounds(399, 429, 89, 23);
-	    frame.getContentPane().add(btnSaveDetails);
+	    btnCreateDetails.setBounds(399, 429, 89, 23);
+	    frame.getContentPane().add(btnCreateDetails);
 		frame.setVisible(true);
 	    
 		}
