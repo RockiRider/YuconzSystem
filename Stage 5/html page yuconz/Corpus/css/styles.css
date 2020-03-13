@@ -91,8 +91,12 @@ a {
 	background-color: rgb(245, 245, 245);
 }
 
-.information {
-  float: right;
+.textArea {
+  margin-left: 25%;
+}
+
+.dropdown-title {
+  text-align: center;
 }
 
 #menu {
