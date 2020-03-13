@@ -25,6 +25,7 @@ public class Db {
 		connectToDb();
 		populateAllEmployees();
 		convertData();
+		selectedUserDetails = new PdStore();
 	}
 	
 	/**
@@ -130,6 +131,21 @@ public class Db {
 			return false;
 		}
 		return false;
+	}
+	
+	public void creatingPd() {
+		selectedUserDetails.setFirstName(" ");
+		selectedUserDetails.setLastName(" ");
+		selectedUserDetails.setDoB(" ");
+		selectedUserDetails.setAddress1(" ");
+		selectedUserDetails.setAddress2(" ");
+		selectedUserDetails.setCity(" ");
+		selectedUserDetails.setCounty(" ");
+		selectedUserDetails.setPostcode(" ");
+		selectedUserDetails.setMobile(" ");
+		selectedUserDetails.setTelenum(" ");
+		selectedUserDetails.setEmergencyNum(" ");
+		selectedUserDetails.setEmergencyContact(" ");
 	}
 	
 	/**

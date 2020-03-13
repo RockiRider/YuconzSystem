@@ -115,11 +115,11 @@ public class AppController {
     }
     
     public static void createDetails(int id) {
-    	
+    	connection.creatingPd();
     	selectedPersonalDetails = new PdFrame(id);
     }
     
-    public static void amendDetails(int id) {
+    public static void viewDetails(int id) {
     	
     }
     
