@@ -18,11 +18,12 @@ public class AppController {
 	//private User session;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
-	private static MyPdWindow myPdFrame;
+	private static MyPdFrame myPdFrame;
 	private static AllDetails detailsLookUp;
 	private static UsersDisplay searchFrame;
 	private static UserOverview userInfo;
 	private static Db connection;
+	private static PdFrame selectedPersonalDetails;
 	
 	/**
 	* Launch the application.
@@ -80,7 +81,7 @@ public class AppController {
     	detailsLookUp = new AllDetails(id);
     	if(detailsLookUp.checkDb(id)) {
     		detailsLookUp.pullDetails(id);
-    		myPdFrame = new MyPdWindow(id);
+    		myPdFrame = new MyPdFrame(id);
     	}else{
     		JOptionPane.showMessageDialog(null,
         		    "Your Personal Details have not yet been created by the HR Team",
@@ -89,21 +90,40 @@ public class AppController {
     		showMain();
     	}
     }
+    /**
+     * Creates a Frame that shows all Current Employees.
+     */
     public static void showLookUp() {
     	connection = new Db();
     	searchFrame = new UsersDisplay(connection.getEmployees());
     }
+    
+    /**
+     * Creates a Frame for the selected user.
+     * @param id
+     */
     public static void selectedDetails(String id) {
     	int input = Integer.parseInt(id);
     	connection.findUser(input);
     	
     	if(connection.matchPersonalDetails(input)) {
-    		userInfo = new UserOverview(true);
+    		userInfo = new UserOverview(true,input);
     	}else {
-    		userInfo = new UserOverview(false);
+    		userInfo = new UserOverview(false,input);
     	}
     	
     }
+    
+    public static void createDetails(int id) {
+    	
+    	selectedPersonalDetails = new PdFrame(id);
+    }
+    
+    public static void amendDetails(int id) {
+    	
+    }
+    
+    
     public static void saveMyDetails(int id) {
     	detailsLookUp.pushDetails(id);
     }

@@ -7,10 +7,13 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import authApp.AppController;
 import authApp.MainDisplay;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UserOverview {
 
@@ -21,18 +24,18 @@ public class UserOverview {
 	/**
 	 * Create the application.
 	 */
-	public UserOverview(boolean input) {
+	public UserOverview(boolean input,int id) {
 		exists = input;
-		initialize();
+		initialize(id);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int id) {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UserOverview.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
 		frame.setBounds(100, 100, 450, 301);
@@ -56,6 +59,11 @@ public class UserOverview {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btncreateBtn = new JButton("Create Personal Details");
+		btncreateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.createDetails(id);
+			}
+		});
 		btncreateBtn.setBounds(112, 99, 218, 32);
 		frame.getContentPane().add(btncreateBtn);
 		
@@ -68,7 +76,6 @@ public class UserOverview {
 		}else {
 			btnView.setVisible(false);
 		}
-		
 		frame.setVisible(true);
 		
 	}

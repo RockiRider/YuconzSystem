@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import authApp.AppController;
-import authApp.PD.MyPdWindow;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -40,7 +39,7 @@ public class UsersDisplay {
 	private void initialize(String[][] input) {
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UsersDisplay.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
 		frame.setBounds(100, 100, 718, 534);

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import authApp.User;
+import authApp.PD.PdStore;
 
 
 public class Db {
@@ -18,6 +19,7 @@ public class Db {
 	private Connection myDb = null;
 	private ArrayList<ArrayList <String>> result = new ArrayList<ArrayList<String>>();
 	private String[][] data;
+	private static PdStore selectedUserDetails;
 	
 	public Db() {
 		connectToDb();
@@ -139,6 +141,9 @@ public class Db {
 	}
 	public static User getSelectedUser() {
 		return selectedUser;
+	}
+	public static PdStore getSelectedUserDetails() {
+		return selectedUserDetails;
 	}
 	
 }
