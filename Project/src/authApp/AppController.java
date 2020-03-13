@@ -96,7 +96,13 @@ public class AppController {
     public static void selectedDetails(String id) {
     	int input = Integer.parseInt(id);
     	connection.findUser(input);
-    	userInfo = new UserOverview();
+    	
+    	if(connection.matchPersonalDetails(input)) {
+    		userInfo = new UserOverview(true);
+    	}else {
+    		userInfo = new UserOverview(false);
+    	}
+    	
     }
     public static void saveMyDetails(int id) {
     	detailsLookUp.pushDetails(id);

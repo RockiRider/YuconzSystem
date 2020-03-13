@@ -82,6 +82,12 @@ public class Db {
 	public void convertData(){
 		data = result.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);
 	}
+	
+	
+	/**
+	 * Finds the data matching the id, inside the Employees table 
+	 * @param id
+	 */
 	public void findUser(int id) {
 		
 		String sql = "select * from Employees where id='"+id+"'";
@@ -93,8 +99,35 @@ public class Db {
 				String foundRole =  rs.getString("role");
 				selectedUser = new User(rs.getString("fName"), rs.getString("sName"), foundRole, false);
 		}catch(SQLException e){
-			
+			JOptionPane.showMessageDialog(null,
+	    		    "Cannot connect to the Database",
+	    		    "Error",
+	    		    JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	/**
+	 * Checks PersonalDetails Table in the Database, to see if there is an entry matching the userId.
+	 * @param userId
+	 * @return boolean
+	 */
+	public boolean matchPersonalDetails(int userId) {
+		
+		String sql = "select id from PersonalDetails where id='"+userId+"'";
+		connectToDb();
+		try(Connection conn = myDb;
+			Statement stmt = conn.createStatement();
+			ResultSet rs  = stmt.executeQuery(sql)){
+				if(rs.getInt("id") == userId) {
+					rs.close();
+					myDb.close();
+					return true;
+				}
+		}catch(SQLException e){
+			
+			return false;
+		}
+		return false;
 	}
 	
 	/**

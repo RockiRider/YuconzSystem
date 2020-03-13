@@ -50,7 +50,7 @@ public class AllDetails {
 	public boolean checkDb(int userId) {
 		
 		String sql = "select id from PersonalDetails where id='"+userId+"'";
-		
+		//connectToDb();
 		try(Connection conn = myDb;
 			Statement stmt = conn.createStatement();
 			ResultSet rs  = stmt.executeQuery(sql)){

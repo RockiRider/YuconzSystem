@@ -1,6 +1,5 @@
 package authApp.Search;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -9,7 +8,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import authApp.MainDisplay;
-import authApp.PD.MyPdWindow;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -23,7 +21,8 @@ public class UserOverview {
 	/**
 	 * Create the application.
 	 */
-	public UserOverview() {
+	public UserOverview(boolean input) {
+		exists = input;
 		initialize();
 	}
 
@@ -46,7 +45,6 @@ public class UserOverview {
 			}
 		});
 		frame.setLocationRelativeTo(null); 
-		frame.setVisible(true);
 		
 		String fName = Db.getSelectedUser().getFirstName();
 		String lName = Db.getSelectedUser().getLastName();
@@ -57,13 +55,21 @@ public class UserOverview {
 		lblNewLabel.setBounds(112, 11, 218, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Create Personal Details");
-		btnNewButton.setBounds(112, 75, 218, 32);
-		frame.getContentPane().add(btnNewButton);
+		JButton btncreateBtn = new JButton("Create Personal Details");
+		btncreateBtn.setBounds(112, 99, 218, 32);
+		frame.getContentPane().add(btncreateBtn);
 		
-		JButton btnNewButton_1 = new JButton("View Personal Details");
-		btnNewButton_1.setBounds(112, 123, 218, 32);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton btnView = new JButton("View Personal Details");
+		btnView.setBounds(112, 154, 218, 32);
+		frame.getContentPane().add(btnView);
+		
+		if(exists) {
+			btncreateBtn.setVisible(false);
+		}else {
+			btnView.setVisible(false);
+		}
+		
+		frame.setVisible(true);
 		
 	}
 	public void die() {
