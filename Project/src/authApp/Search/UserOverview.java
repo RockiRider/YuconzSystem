@@ -69,6 +69,12 @@ public class UserOverview {
 		frame.getContentPane().add(btncreateBtn);
 		
 		JButton btnView = new JButton("View Personal Details");
+		btnView.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.viewDetails(id);
+				die();
+			}
+		});
 		btnView.setBounds(112, 154, 218, 32);
 		frame.getContentPane().add(btnView);
 		
@@ -79,7 +85,7 @@ public class UserOverview {
 				die();
 			}
 		});
-		btnBack.setBounds(10, 238, 89, 23);
+		btnBack.setBounds(10, 223, 89, 23);
 		frame.getContentPane().add(btnBack);
 		
 		if(exists) {

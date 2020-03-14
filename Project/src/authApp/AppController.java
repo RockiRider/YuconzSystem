@@ -24,6 +24,7 @@ public class AppController {
 	private static UserOverview userInfo;
 	private static Db connection;
 	private static PdCreateFrame createPersonalDetails;
+	private static PDFrame viewPersonalDetails;
 	
 	/**
 	* Launch the application.
@@ -91,7 +92,7 @@ public class AppController {
     	}
     }
     /**
-     * Creates a Frame that shows all Current Employees.
+     * Creates a Frame that shows all Current Employees in a table.
      */
     public static void showLookUp() {
     	connection = new Db();
@@ -99,7 +100,7 @@ public class AppController {
     }
     
     /**
-     * Creates a Frame for the selected user.
+     * Creates a Frame for the selected user, that gives an overview of the selected User and actions that can be taken.
      * @param id
      */
     public static void selectedDetails(String id) {
@@ -114,21 +115,48 @@ public class AppController {
     	
     }
     
+    /**
+     * Creates a Frame that allows allows User to create Personal Details for another Employee
+     * @param id
+     */
     public static void createDetails(int id) {
     	connection.creatingPd();
     	createPersonalDetails = new PdCreateFrame(id);
     }
     
+    /**
+     * Creates a Frame that allows user to view other Employees Personal Details
+     * @param id
+     */
     public static void viewDetails(int id) {
-    	
+    	connection.pullDetails(id);
+    	viewPersonalDetails = new PDFrame(id);
     }
     
+    /**
+     * Inserts new entry into PersonalDetails Table, by calling the method that handles that.
+     * @param id
+     */
     public static void insertMyDetails(int id) {
     	connection.insertNew(id);
     }
+    
+    /**
+     * Updates the current users PersonalDetails in the Database, by calling the method that handles that.
+     * @param id
+     */
     public static void saveMyDetails(int id) {
     	detailsLookUp.pushDetails(id);
     }
+    /**
+     * Updates selected Employees Personal Details, by calling the method that handles that.
+     * @param id
+     */
+    public static void saveTheirDetails(int id) {
+    	connection.pushDetails(id);
+    }
+    
+    
     public static void showMain() {
     	mainFrame.show();
     }
