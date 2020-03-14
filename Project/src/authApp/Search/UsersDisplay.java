@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-import authApp.AppController;
+import controller.*;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;

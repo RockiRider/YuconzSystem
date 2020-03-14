@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import authApp.AppController;
+import controller.*;
 import authApp.Auth;
 import authApp.Search.Db;
 

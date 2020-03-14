@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import authApp.AppController;
+import controller.*;
 import authApp.Search.Db;
 
 public class PdCreateFrame {
