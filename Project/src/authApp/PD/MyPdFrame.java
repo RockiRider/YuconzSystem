@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Toolkit;
 
-import authApp.AppController;
+import controller.*;
 import authApp.Auth;
 
 //import authApp.AppController;

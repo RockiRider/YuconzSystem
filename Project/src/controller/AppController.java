@@ -1,4 +1,4 @@
-package authApp;
+package controller;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
+
+import authApp.*;
 import authApp.PD.*;
 import authApp.Search.*;
 
