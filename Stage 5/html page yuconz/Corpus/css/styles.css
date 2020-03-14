@@ -87,13 +87,13 @@ a {
 }
 
 .mainArea {
-	height: 300%;
+	height: 100%;
 	background-color: rgb(245, 245, 245);
 }
 
 .textArea {
-  margin-top: -1.3%;
   margin-left: 25%;
+  margin-right: 10%;
 }
 
 .dropdown-title {
@@ -344,11 +344,11 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 }
 
 .title {
+    margin-top: 0px;
 	font-family: "Pacifico";
-	font-weight: norma;
+	font-weight: bold;
 	font-size: 40px;
 	text-align: center;
-	line-height: 1.4;
 	color: #c0392b;
 }
 
