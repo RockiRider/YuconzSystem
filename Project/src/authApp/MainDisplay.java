@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import controller.*;
 
 /**
  * This class generates the GUI for the main display, which is generated after

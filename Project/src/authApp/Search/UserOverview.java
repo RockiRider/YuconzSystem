@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
-import authApp.AppController;
+import controller.*;
 import authApp.MainDisplay;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
