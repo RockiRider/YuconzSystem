@@ -265,7 +265,7 @@ public class PdCreateFrame {
 	    		
 	    		AppController.insertMyDetails(id);
 	    		
-	    		saveAndBack();
+	    		saveAndBack(input);
 	    		
 	    		
 	    	}
@@ -288,8 +288,9 @@ public class PdCreateFrame {
 		public void die() {
 			frame.dispose();
 		}
-		public void saveAndBack() {
-			AppController.showMain();
+		public void saveAndBack(String in) {
+			
+			AppController.selectedDetails(in);
 			die();
 		}
 	}

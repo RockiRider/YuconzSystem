@@ -132,6 +132,12 @@ public class AppController {
     public static void showMain() {
     	mainFrame.show();
     }
+    public static void showTable() {
+    	searchFrame.show();
+    }
+    public static void showUserDisplay() {
+    	userInfo.show();
+    }
     public static void removeMain() {
     	mainFrame.die();
     }

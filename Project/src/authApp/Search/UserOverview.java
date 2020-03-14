@@ -72,6 +72,16 @@ public class UserOverview {
 		btnView.setBounds(112, 154, 218, 32);
 		frame.getContentPane().add(btnView);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.showTable();
+				die();
+			}
+		});
+		btnBack.setBounds(10, 238, 89, 23);
+		frame.getContentPane().add(btnBack);
+		
 		if(exists) {
 			btncreateBtn.setVisible(false);
 		}else {

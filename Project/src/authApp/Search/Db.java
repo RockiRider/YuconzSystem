@@ -159,18 +159,20 @@ public class Db {
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
 			pstmt.setInt(1,id);
-			pstmt.setString(2, selectedUserDetails.getLastName());
-            pstmt.setString(3, selectedUserDetails.getFirstName());
-            pstmt.setString(4, selectedUserDetails.getDoB());
-            pstmt.setString(5, selectedUserDetails.getAddress1());
-            pstmt.setString(6, selectedUserDetails.getAddress2());
-            pstmt.setString(7, selectedUserDetails.getCity());
-            pstmt.setString(8, selectedUserDetails.getCounty());
-            pstmt.setString(9, selectedUserDetails.getPostcode());
-            pstmt.setString(10, selectedUserDetails.getTelenum());
-            pstmt.setString(11, selectedUserDetails.getMobile());
-            pstmt.setString(12, selectedUserDetails.getEmergencyContact());
-            pstmt.setString(13, selectedUserDetails.getEmergencyNum());
+			pstmt.setString(2,selectedUserDetails.getLastName());
+            pstmt.setString(3,selectedUserDetails.getFirstName());
+            pstmt.setString(4,selectedUserDetails.getDoB());
+            pstmt.setString(5,selectedUserDetails.getAddress1());
+            pstmt.setString(6,selectedUserDetails.getAddress2());
+            pstmt.setString(7,selectedUserDetails.getCity());
+            pstmt.setString(8,selectedUserDetails.getCounty());
+            pstmt.setString(9,selectedUserDetails.getPostcode());
+            pstmt.setString(10,selectedUserDetails.getTelenum());
+            pstmt.setString(11,selectedUserDetails.getMobile());
+            pstmt.setString(12,selectedUserDetails.getEmergencyContact());
+            pstmt.setString(13,selectedUserDetails.getEmergencyNum());
+            pstmt.executeUpdate();
+            System.out.println("here");
 		}catch(SQLException e) {
 			JOptionPane.showMessageDialog(null,
 	    		    "Cannot connect to the Database",

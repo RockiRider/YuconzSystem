@@ -62,7 +62,7 @@ public class UsersDisplay {
 	        	int row = table.getSelectedRow();
 	        	String value = table.getModel().getValueAt(row, column).toString();
 	        	AppController.selectedDetails(value);
-	        	table.setEnabled(false);
+	        	die();
 	        }
 	    });
 	}
