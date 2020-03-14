@@ -37,20 +37,34 @@ public class Auth {
 	public void logAttempt(String uName, String pwd, boolean success) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		LocalDateTime currentTime = LocalDateTime.now();
+		String formatted = currentTime.format(dtf);
 		String outcome = "Failed";
 		if(success) {
 			outcome = "Successful";
+			
+			try {
+	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
+	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
+	            writer.write("\r\n");
+	            writer.write(outcome +"\t "+ uName +" \t "+ pwd +" \t "+ formatted);
+	            writer.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+			
+		}else {
+			try {
+	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
+	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
+	            writer.write("\r\n");
+	            writer.write(outcome +"\t \t "+ uName +" \t "+ pwd +" \t "+ formatted);
+	            writer.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 		}
 		
-        try {
-            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
-            writer.write("\r\n"+"--------------------------------------------------------------------"); 
-            writer.write("\r\n");
-            writer.write(outcome +" \t \t "+ uName +" \t "+ pwd +" \t "+ currentTime);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
 	}
 	/**
 	* Connect to the LOCAL Database
