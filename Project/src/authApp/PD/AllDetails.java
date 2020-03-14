@@ -139,20 +139,20 @@ public class AllDetails {
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
  
             // set the corresponding param
-            pstmt.setString(1, getMyCurrentDetails().getFirstName());
-            pstmt.setString(2, getMyCurrentDetails().getLastName());
-            pstmt.setString(3, getMyCurrentDetails().getDoB());
+            pstmt.setString(1, myCurrentDetails.getFirstName());
+            pstmt.setString(2, myCurrentDetails.getLastName());
+            pstmt.setString(3, myCurrentDetails.getDoB());
             
             
-            pstmt.setString(4, getMyCurrentDetails().getAddress1());
-            pstmt.setString(5, getMyCurrentDetails().getAddress2());
-            pstmt.setString(6, getMyCurrentDetails().getCity());
-            pstmt.setString(7, getMyCurrentDetails().getCounty());
-            pstmt.setString(8, getMyCurrentDetails().getPostcode());
-            pstmt.setString(9, getMyCurrentDetails().getTelenum());
-            pstmt.setString(10, getMyCurrentDetails().getMobile());
-            pstmt.setString(11, getMyCurrentDetails().getEmergencyContact());
-            pstmt.setString(12, getMyCurrentDetails().getEmergencyNum());
+            pstmt.setString(4, myCurrentDetails.getAddress1());
+            pstmt.setString(5, myCurrentDetails.getAddress2());
+            pstmt.setString(6, myCurrentDetails.getCity());
+            pstmt.setString(7, myCurrentDetails.getCounty());
+            pstmt.setString(8, myCurrentDetails.getPostcode());
+            pstmt.setString(9, myCurrentDetails.getTelenum());
+            pstmt.setString(10, myCurrentDetails.getMobile());
+            pstmt.setString(11, myCurrentDetails.getEmergencyContact());
+            pstmt.setString(12, myCurrentDetails.getEmergencyNum());
             pstmt.setInt(13, id);
             		
             // update 

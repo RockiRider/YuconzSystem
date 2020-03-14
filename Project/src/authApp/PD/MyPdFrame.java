@@ -19,7 +19,7 @@ import authApp.Auth;
 
 //import authApp.AppController;
 
-public class MyPdWindow {
+public class MyPdFrame {
 
 private JFrame frame;
 
@@ -41,7 +41,7 @@ private JTextField emerContactField;
 /**
  * Create the application.
  */
-public MyPdWindow(int myid) {
+public MyPdFrame(int myid) {
 	initialize(myid);
 }
 
@@ -51,7 +51,7 @@ public MyPdWindow(int myid) {
 private void initialize(int tempid) {
 	frame = new JFrame();
 	frame.setResizable(false);
-	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdWindow.class.getResource("/authApp/img/LogoNoText.png")));
+	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdFrame.class.getResource("/authApp/img/LogoNoText.png")));
 	frame.setTitle("Yuconz System");
 	frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
 	frame.setBounds(100, 100, 800, 534);
