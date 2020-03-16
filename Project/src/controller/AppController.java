@@ -73,6 +73,10 @@ public class AppController {
     public static void logOut() {
     	main(null);
     	removeMain();
+    	if(searchFrame != null) {
+    		searchFrame.die();
+    		userInfo.die();
+    	}
     }
     /**
      * Generates Personal Details Frame and Populates it
