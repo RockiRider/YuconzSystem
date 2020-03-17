@@ -75,6 +75,8 @@ public class AppController {
     	removeMain();
     	if(searchFrame != null) {
     		searchFrame.die();
+    	}
+    	if(userInfo != null) {
     		userInfo.die();
     	}
     	if(createPersonalDetails != null) {
@@ -88,13 +90,13 @@ public class AppController {
      * Generates Personal Details Frame and Populates it
      * @param id
      */
-    public static void generatePd(int id) {
+    public static void generatePd() {
     	
     	mainFrame.hide();
-    	detailsLookUp = new AllDetails(id);
-    	if(detailsLookUp.checkDb(id)) {
-    		detailsLookUp.pullDetails(id);
-    		myPdFrame = new MyPdFrame(id);
+    	detailsLookUp = new AllDetails();
+    	if(detailsLookUp.checkDb()) {
+    		detailsLookUp.pullDetails();
+    		myPdFrame = new MyPdFrame();
     	}else{
     		JOptionPane.showMessageDialog(null,
         		    "Your Personal Details have not yet been created by the HR Team",
@@ -157,8 +159,8 @@ public class AppController {
      * Updates the current users PersonalDetails in the Database, by calling the method that handles that.
      * @param id
      */
-    public static void saveMyDetails(int id) {
-    	detailsLookUp.pushDetails(id);
+    public static void saveMyDetails() {
+    	detailsLookUp.pushDetails();
     }
     /**
      * Updates selected Employees Personal Details, by calling the method that handles that.

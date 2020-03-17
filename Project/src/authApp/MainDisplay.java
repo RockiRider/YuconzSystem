@@ -89,7 +89,7 @@ public class MainDisplay {
 		JButton btnMyPd = new JButton("My Personal Details");
 		btnMyPd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.generatePd(userId);
+				AppController.generatePd();
 			}
 		});
 		btnMyPd.setBounds(271, 164, 157, 23);

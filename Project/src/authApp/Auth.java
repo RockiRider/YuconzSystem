@@ -2,6 +2,7 @@ package authApp;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -42,6 +43,7 @@ public class Auth {
 			outcome = "Successful";
 			
 			try {
+				
 	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
