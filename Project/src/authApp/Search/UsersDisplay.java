@@ -2,6 +2,9 @@ package authApp.Search;
 
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 
 import controller.*;
@@ -43,7 +46,12 @@ public class UsersDisplay {
 		frame.setTitle("Yuconz System");
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
 		frame.setBounds(100, 100, 718, 534);
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);	//Needs to be changed
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent evt) {
+			     die();
+			}
+		});
 		table = new JTable(input, columnNames);
 		table.setBounds(10, 41, 528, 286);
 		table.setDefaultEditor(Object.class, null);
