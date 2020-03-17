@@ -77,6 +77,12 @@ public class AppController {
     		searchFrame.die();
     		userInfo.die();
     	}
+    	if(createPersonalDetails != null) {
+    		createPersonalDetails.die();
+    	}
+    	if(viewPersonalDetails != null) {
+    		viewPersonalDetails.die();
+    	}
     }
     /**
      * Generates Personal Details Frame and Populates it
@@ -178,5 +184,4 @@ public class AppController {
     public static void removeMyPd() {
     	myPdFrame.die();
     }
-    
 }

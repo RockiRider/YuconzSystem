@@ -50,7 +50,6 @@ public class UsersDisplay {
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 			     die();
-			     
 			}
 		});
 		table = new JTable(input, columnNames);
