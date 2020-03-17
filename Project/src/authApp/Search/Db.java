@@ -99,9 +99,10 @@ public class Db {
 		try(Connection conn = myDb;
 				Statement stmt = conn.createStatement();
 				ResultSet rs  = stmt.executeQuery(sql)){
-			
+				
+				int idsetter = rs.getInt("id");
 				String foundRole =  rs.getString("role");
-				selectedUser = new User(rs.getString("fName"), rs.getString("sName"), foundRole, false);
+				selectedUser = new User(rs.getString("fName"), rs.getString("sName"), foundRole, false,idsetter);
 		}catch(SQLException e){
 			JOptionPane.showMessageDialog(null,
 	    		    "Cannot connect to the Database",

@@ -8,14 +8,16 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String role;
-	boolean higherAccess;
+	private boolean higherAccess;
+	private int id;
 	
-	public User(String fName, String lName, String tempRole, boolean access) {
+	public User(String fName, String lName, String tempRole, boolean access,int staffId) {
 		
 		firstName = fName;
 		lastName = lName;
 		role = tempRole;
 		higherAccess = access;
+		id = staffId;
 	}
 	
 	public String getFirstName() {
@@ -34,5 +36,10 @@ public class User {
 	public void setAccess(boolean newAccess) {
 		higherAccess = newAccess;
 	}
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int input) {
+		id = input;
+	}
 }

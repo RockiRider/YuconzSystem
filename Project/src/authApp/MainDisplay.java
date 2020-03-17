@@ -57,7 +57,7 @@ public class MainDisplay {
 		String fName = Auth.getCurrentUser().getFirstName();
 		String sName = Auth.getCurrentUser().getLastName();
 		String role = Auth.getCurrentUser().getRole();
-		int userId = Auth.getCurrentId();
+		int userId = Auth.getCurrentUser().getId();
 		accessLevel = Auth.getCurrentUser().getAccess();
 		tempAccessLevel = accessLevel;
 		
