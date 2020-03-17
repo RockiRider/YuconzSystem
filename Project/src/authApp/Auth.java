@@ -21,12 +21,14 @@ public class Auth {
 	private Connection myDb = null;
 	private static User currentUser;
 	private static int id;
+	private String outcome;
 	
 	/**
 	* Constructor Method for Auth, which automatically tries to connect to the DB.
 	*/
 	public Auth() {
 		connectToDb();
+		outcome = "Failed";
 	}
 	/**
 	 * Logs the successful and unsuccessful login attempts inside AuthorisationLogs.txt File.
@@ -38,9 +40,9 @@ public class Auth {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		LocalDateTime currentTime = LocalDateTime.now();
 		String formatted = currentTime.format(dtf);
-		String outcome = "Failed";
+		
 		if(success) {
-			outcome = "Successful";
+			setOutcome(outcome = "Successful");
 			
 			try {
 	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
@@ -66,6 +68,25 @@ public class Auth {
 		
         
 	}
+	
+	/**
+	 * Set the new outcome status for login.
+	 * @param newOutcome
+	 * @return outcome
+	 */
+	public String setOutcome(String newOutcome) {
+		outcome = newOutcome;
+		return outcome;
+	}
+	
+	/**
+	 * Get the current outcome of login.
+	 * @return outcome
+	 */
+	public String getOutcome() {
+		return outcome;
+	}
+	
 	/**
 	* Connect to the LOCAL Database
 	*/
