@@ -7,8 +7,8 @@ import authApp.User;
  */
 public class HREmployee extends User {
 
-	public HREmployee(String fName, String lName) {
-		super(fName, lName, "HR Employee", true);
+	public HREmployee(String fName, String lName,int id) {
+		super(fName, lName, "HR Employee", true,id);
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -75,6 +75,8 @@ public class AppController {
     	removeMain();
     	if(searchFrame != null) {
     		searchFrame.die();
+    	}
+    	if(userInfo != null) {
     		userInfo.die();
     	}
     	if(createPersonalDetails != null) {
@@ -88,13 +90,13 @@ public class AppController {
      * Generates Personal Details Frame and Populates it
      * @param id
      */
-    public static void generatePd(int id) {
+    public static void generatePd() {
     	
     	mainFrame.hide();
-    	detailsLookUp = new AllDetails(id);
-    	if(detailsLookUp.checkDb(id)) {
-    		detailsLookUp.pullDetails(id);
-    		myPdFrame = new MyPdFrame(id);
+    	detailsLookUp = new AllDetails();
+    	if(detailsLookUp.checkDb()) {
+    		detailsLookUp.pullDetails();
+    		myPdFrame = new MyPdFrame();
     	}else{
     		JOptionPane.showMessageDialog(null,
         		    "Your Personal Details have not yet been created by the HR Team",
@@ -115,14 +117,14 @@ public class AppController {
      * Creates a Frame for the selected user, that gives an overview of the selected User and actions that can be taken.
      * @param id
      */
-    public static void selectedDetails(String id) {
-    	int input = Integer.parseInt(id);
-    	connection.findUser(input);
+    public static void selectedDetails() {
+    	//int id = connection.getSelectedUser().getId();
+    	connection.findUser();
     	
-    	if(connection.matchPersonalDetails(input)) {
-    		userInfo = new UserOverview(true,input);
+    	if(connection.matchPersonalDetails()) {
+    		userInfo = new UserOverview(true);
     	}else {
-    		userInfo = new UserOverview(false,input);
+    		userInfo = new UserOverview(false);
     	}
     	
     }
@@ -131,41 +133,41 @@ public class AppController {
      * Creates a Frame that allows allows User to create Personal Details for another Employee
      * @param id
      */
-    public static void createDetails(int id) {
+    public static void createDetails() {
     	connection.creatingPd();
-    	createPersonalDetails = new PdCreateFrame(id);
+    	createPersonalDetails = new PdCreateFrame();
     }
     
     /**
      * Creates a Frame that allows user to view other Employees Personal Details
      * @param id
      */
-    public static void viewDetails(int id) {
-    	connection.pullDetails(id);
-    	viewPersonalDetails = new PDFrame(id);
+    public static void viewDetails() {
+    	connection.pullDetails();
+    	viewPersonalDetails = new PDFrame();
     }
     
     /**
      * Inserts new entry into PersonalDetails Table, by calling the method that handles that.
      * @param id
      */
-    public static void insertMyDetails(int id) {
-    	connection.insertNew(id);
+    public static void insertMyDetails() {
+    	connection.insertNew();
     }
     
     /**
      * Updates the current users PersonalDetails in the Database, by calling the method that handles that.
      * @param id
      */
-    public static void saveMyDetails(int id) {
-    	detailsLookUp.pushDetails(id);
+    public static void saveMyDetails() {
+    	detailsLookUp.pushDetails();
     }
     /**
      * Updates selected Employees Personal Details, by calling the method that handles that.
      * @param id
      */
-    public static void saveTheirDetails(int id) {
-    	connection.pushDetails(id);
+    public static void saveTheirDetails() {
+    	connection.pushDetails();
     }
     
     

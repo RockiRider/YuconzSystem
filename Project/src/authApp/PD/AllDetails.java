@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import authApp.Auth;
+
 
 /**
  * This class handles all communication to the SQLite database reguarding anything to do with Employee Personal Details
@@ -16,7 +18,7 @@ public class AllDetails {
 	private Connection myDb = null;
 	private static MyPdStore myCurrentDetails;
 	
-	public AllDetails(int id) {
+	public AllDetails() {
 		connectToDb();
 		myCurrentDetails = new MyPdStore();
 	}
@@ -47,8 +49,9 @@ public class AllDetails {
 	 * Checks if Personal Details Exists for this User
 	 * @return Boolean
 	 */
-	public boolean checkDb(int userId) {
+	public boolean checkDb() {
 		
+		int userId = Auth.getCurrentUser().getId();
 		String sql = "select id from PersonalDetails where id='"+userId+"'";
 		//connectToDb();
 		try(Connection conn = myDb;
@@ -70,7 +73,9 @@ public class AllDetails {
 	* Loads the Details from the Database that matches the usersId
 	* @param userId
 	*/
-	public void pullDetails(int userId) {
+	public void pullDetails() {
+		
+		int userId = Auth.getCurrentUser().getId();
 		String sql = "select * from PersonalDetails where id='"+userId+"'";
 		
 		connectToDb();
@@ -127,7 +132,10 @@ public class AllDetails {
 	 * This method saves the new information and pushes it onto the database
 	 * @param id
 	 */
-	public void pushDetails(int id) {
+	public void pushDetails() {
+		
+		int userId = Auth.getCurrentUser().getId();
+		
 		String sql = "UPDATE PersonalDetails SET fName = ? , "
                 + "sName = ? , " + "dob = ? , " + "address1 = ? , " + "address2 = ? , " + "city = ? , " 
 				+ "county = ? , " + "postcode = ? , " + "telephoneNum = ? , " + "mobileNum = ? , " 
@@ -153,7 +161,7 @@ public class AllDetails {
             pstmt.setString(10, myCurrentDetails.getMobile());
             pstmt.setString(11, myCurrentDetails.getEmergencyContact());
             pstmt.setString(12, myCurrentDetails.getEmergencyNum());
-            pstmt.setInt(13, id);
+            pstmt.setInt(13, userId);
             		
             // update 
             pstmt.executeUpdate();

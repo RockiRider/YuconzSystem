@@ -57,7 +57,7 @@ public class MainDisplay {
 		String fName = Auth.getCurrentUser().getFirstName();
 		String sName = Auth.getCurrentUser().getLastName();
 		String role = Auth.getCurrentUser().getRole();
-		int userId = Auth.getCurrentId();
+		int userId = Auth.getCurrentUser().getId();
 		accessLevel = Auth.getCurrentUser().getAccess();
 		tempAccessLevel = accessLevel;
 		
@@ -89,7 +89,7 @@ public class MainDisplay {
 		JButton btnMyPd = new JButton("My Personal Details");
 		btnMyPd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.generatePd(userId);
+				AppController.generatePd();
 			}
 		});
 		btnMyPd.setBounds(271, 164, 157, 23);

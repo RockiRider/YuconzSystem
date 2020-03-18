@@ -41,14 +41,14 @@ private JTextField emerContactField;
 /**
  * Create the application.
  */
-public MyPdFrame(int myid) {
-	initialize(myid);
+public MyPdFrame() {
+	initialize();
 }
 
 /**
  * Initialise the contents of the frame.
  */
-private void initialize(int tempid) {
+private void initialize() {
 	frame = new JFrame();
 	frame.setResizable(false);
 	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MyPdFrame.class.getResource("/authApp/img/LogoNoText.png")));
@@ -66,7 +66,8 @@ private void initialize(int tempid) {
 	frame.setVisible(true);
 
 	//Get ID
-	String myid = Integer.toString(tempid);
+	int userId =  Auth.getCurrentUser().getId();
+	String myid = Integer.toString(userId);
 	//Get Personal Details
 	String firstName = AllDetails.getMyCurrentDetails().getFirstName();
 	String lastName = AllDetails.getMyCurrentDetails().getLastName();
@@ -264,7 +265,7 @@ private void initialize(int tempid) {
     		AllDetails.getMyCurrentDetails().setEmergencyNum(newEmergencyNum);
     		AllDetails.getMyCurrentDetails().setEmergencyContact(newEmergencyContact);
     		
-    		AppController.saveMyDetails(tempid);
+    		AppController.saveMyDetails();
     		
     		saveAndBack();
     		

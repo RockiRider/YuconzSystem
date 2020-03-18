@@ -7,7 +7,7 @@ import authApp.User;
  */
 public class Director extends User{
 
-	public Director(String fName, String lName) {
-		super(fName, lName, "Director", false);
+	public Director(String fName, String lName,int id) {
+		super(fName, lName, "Director", false,id);
 	}
 }

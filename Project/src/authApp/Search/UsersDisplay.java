@@ -69,7 +69,8 @@ public class UsersDisplay {
 	        	int column = 0;
 	        	int row = table.getSelectedRow();
 	        	String value = table.getModel().getValueAt(row, column).toString();
-	        	AppController.selectedDetails(value);
+	        	Db.getSelectedUser().setId(Integer.parseInt(value));
+	        	AppController.selectedDetails();
 	        	die();
 	        }
 	    });

@@ -2,6 +2,7 @@ package authApp;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -45,6 +46,7 @@ public class Auth {
 			setOutcome(outcome = "Successful");
 			
 			try {
+				
 	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
@@ -127,25 +129,24 @@ public class Auth {
 				String foundRole =  rs.getString("role");
 				switch(foundRole) {
 				case "Director":
-					currentUser = new Director(rs.getString("fName"),rs.getString("sName"));
+					currentUser = new Director(rs.getString("fName"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				case "HR Employee":
-					currentUser = new HREmployee(rs.getString("fname"),rs.getString("sName"));
+					currentUser = new HREmployee(rs.getString("fname"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				case "HR Director":
-					currentUser = new HRDirector(rs.getString("fname"),rs.getString("sName"));
+					currentUser = new HRDirector(rs.getString("fname"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				case "Manager":
-					currentUser = new Manager(rs.getString("fname"),rs.getString("sName"));
+					currentUser = new Manager(rs.getString("fname"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				case "Reviewer":
-					currentUser = new Reviewer(rs.getString("fname"),rs.getString("sName"));
+					currentUser = new Reviewer(rs.getString("fname"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				case "Employee":
-					currentUser = new Employee(rs.getString("fname"),rs.getString("sName"));
+					currentUser = new Employee(rs.getString("fname"),rs.getString("sName"),rs.getInt("id"));
 					break;
 				}
-				id = rs.getInt("id");
 				return true;
 			}
 			return false;
@@ -160,9 +161,6 @@ public class Auth {
 	 */
 	public static User getCurrentUser() {
 		return currentUser;
-	}
-	public static int getCurrentId() {
-		return id;
 	}
 
 }

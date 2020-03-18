@@ -7,8 +7,8 @@ import authApp.User;
  */
 public class Reviewer extends User{
 
-	public Reviewer(String fName, String lName) {
-		super(fName, lName, "Reviewer", false);
+	public Reviewer(String fName, String lName,int id) {
+		super(fName, lName, "Reviewer", false,id);
 		// TODO Auto-generated constructor stub
 	}
 

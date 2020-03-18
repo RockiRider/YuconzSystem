@@ -27,6 +27,7 @@ public class Db {
 		populateAllEmployees();
 		convertData();
 		selectedUserDetails = new PdStore();
+		selectedUser = new User(" ", " ", " ", false, 0);
 	}
 	
 	/**
@@ -92,16 +93,19 @@ public class Db {
 	 * Finds the data matching the id, inside the Employees table 
 	 * @param id
 	 */
-	public void findUser(int id) {
+	public void findUser() {
+		int id = selectedUser.getId();
 		
 		String sql = "select * from Employees where id='"+id+"'";
 		connectToDb();
 		try(Connection conn = myDb;
 				Statement stmt = conn.createStatement();
 				ResultSet rs  = stmt.executeQuery(sql)){
-			
-				String foundRole =  rs.getString("role");
-				selectedUser = new User(rs.getString("fName"), rs.getString("sName"), foundRole, false);
+				
+				selectedUser.setFirstName(rs.getString("fName"));
+				selectedUser.setLastName(rs.getString("sName"));
+				selectedUser.setRole(rs.getString("role"));
+				selectedUser.setAccess(false);
 		}catch(SQLException e){
 			JOptionPane.showMessageDialog(null,
 	    		    "Cannot connect to the Database",
@@ -115,14 +119,16 @@ public class Db {
 	 * @param userId
 	 * @return boolean
 	 */
-	public boolean matchPersonalDetails(int userId) {
+	public boolean matchPersonalDetails() {
 		
-		String sql = "select id from PersonalDetails where id='"+userId+"'";
+		int selectedUserId = selectedUser.getId();
+		
+		String sql = "select id from PersonalDetails where id='"+selectedUserId+"'";
 		connectToDb();
 		try(Connection conn = myDb;
 			Statement stmt = conn.createStatement();
 			ResultSet rs  = stmt.executeQuery(sql)){
-				if(rs.getInt("id") == userId) {
+				if(rs.getInt("id") == selectedUserId) {
 					
 					rs.close();
 					myDb.close();
@@ -134,8 +140,11 @@ public class Db {
 		}
 		return false;
 	}
-	public void pullDetails(int userId) {
-		String sql = "select * from PersonalDetails where id='"+userId+"'";
+	public void pullDetails() {
+		
+		int selectedUserId = selectedUser.getId();
+		
+		String sql = "select * from PersonalDetails where id='"+selectedUserId+"'";
 		
 		connectToDb();
 		
@@ -144,7 +153,7 @@ public class Db {
 			ResultSet rs  = stmt.executeQuery(sql)){
 			
 				int foundId = rs.getInt("id");
-				if(foundId == userId) {
+				if(foundId == selectedUserId) {
 					// Get new details from database
 					String firstName = rs.getString("fName");
 					String lastName = rs.getString("sName");
@@ -204,13 +213,16 @@ public class Db {
 		selectedUserDetails.setEmergencyNum(" ");
 		selectedUserDetails.setEmergencyContact(" ");
 	}
-	public void insertNew(int id) {
+	public void insertNew() {
+		
+		int selectedUserId = selectedUser.getId();
+		
 		connectToDb();
 		String sql = "INSERT INTO PersonalDetails(id,sName,fName,dob,address1,address2,city,county,postcode,telephoneNum,mobileNum,emergencyContact,emergencyContactNum) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try(Connection conn = myDb;
                 PreparedStatement pstmt = conn.prepareStatement(sql)){
 			
-			pstmt.setInt(1,id);
+			pstmt.setInt(1,selectedUserId);
 			pstmt.setString(2,selectedUserDetails.getLastName());
             pstmt.setString(3,selectedUserDetails.getFirstName());
             pstmt.setString(4,selectedUserDetails.getDoB());
@@ -233,7 +245,10 @@ public class Db {
 		}
 	}
 	
-	public void pushDetails(int id) {
+	public void pushDetails() {
+		
+		int selectedUserId = selectedUser.getId();
+		
 		String sql = "UPDATE PersonalDetails SET fName = ? , "
                 + "sName = ? , " + "dob = ? , " + "address1 = ? , " + "address2 = ? , " + "city = ? , " 
 				+ "county = ? , " + "postcode = ? , " + "telephoneNum = ? , " + "mobileNum = ? , " 
@@ -259,7 +274,7 @@ public class Db {
             pstmt.setString(10, selectedUserDetails.getMobile());
             pstmt.setString(11, selectedUserDetails.getEmergencyContact());
             pstmt.setString(12, selectedUserDetails.getEmergencyNum());
-            pstmt.setInt(13, id);
+            pstmt.setInt(13, selectedUserId);
             		
             // update 
             pstmt.executeUpdate();

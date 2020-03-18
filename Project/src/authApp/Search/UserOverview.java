@@ -24,15 +24,18 @@ public class UserOverview {
 	/**
 	 * Create the application.
 	 */
-	public UserOverview(boolean input,int id) {
+	public UserOverview(boolean input) {
 		exists = input;
-		initialize(id);
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int id) {
+	private void initialize() {
+		
+		int id = Db.getSelectedUser().getId();
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UserOverview.class.getResource("/authApp/img/LogoNoText.png")));
@@ -43,8 +46,8 @@ public class UserOverview {
 		frame.getContentPane().setLayout(null);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-			     die();
 			     UsersDisplay.table.setEnabled(true);
+			     die();
 			}
 		});
 		frame.setLocationRelativeTo(null); 
@@ -61,7 +64,7 @@ public class UserOverview {
 		JButton btncreateBtn = new JButton("Create Personal Details");
 		btncreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.createDetails(id);
+				AppController.createDetails();
 				die();
 			}
 		});
@@ -71,7 +74,7 @@ public class UserOverview {
 		JButton btnView = new JButton("View Personal Details");
 		btnView.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppController.viewDetails(id);
+				AppController.viewDetails();
 				die();
 			}
 		});
