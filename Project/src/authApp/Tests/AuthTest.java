@@ -16,6 +16,13 @@ class AuthTest {
 
 	private Auth auth;
 	
+	/**
+	 * Default constructor for test class AuthTest.
+	 */
+	AuthTest() {
+		
+	}
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		
