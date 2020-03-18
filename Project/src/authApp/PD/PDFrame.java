@@ -39,14 +39,17 @@ public class PDFrame {
 	/**
 	 * Create the application.
 	 */
-	public PDFrame(int myid) {
-		initialize(myid);
+	public PDFrame() {
+		initialize();
 	}
 
 	/**
 	 * Initialise the contents of the frame.
 	 */
-	private void initialize(int tempid) {
+	private void initialize() {
+		
+		int tempid = Db.getSelectedUser().getId();
+		
 		String userId = Integer.toString(tempid);
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -58,7 +61,7 @@ public class PDFrame {
 		frame.getContentPane().setLayout(null);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-			     backFunction(userId);
+			     backFunction();
 			}
 		});
 		frame.setLocationRelativeTo(null); 
@@ -226,7 +229,7 @@ public class PDFrame {
 	    JButton btnBack = new JButton("BACK");
 	    btnBack.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		backFunction(userId);
+	    		backFunction();
 	    	}
 	    });
 	    btnBack.setBounds(269, 429, 89, 23);
@@ -264,9 +267,9 @@ public class PDFrame {
 	    		Db.getSelectedUserDetails().setEmergencyNum(newEmergencyNum);
 	    		Db.getSelectedUserDetails().setEmergencyContact(newEmergencyContact);
 	    		
-	    		AppController.saveTheirDetails(tempid);
+	    		AppController.saveTheirDetails();
 	    		
-	    		saveAndBack(userId);
+	    		saveAndBack();
 	    		
 	    		
 	    	}
@@ -282,15 +285,15 @@ public class PDFrame {
 		public void show() {
 			frame.setVisible(true);
 		}
-		public void backFunction(String id){
-			AppController.selectedDetails(id);
+		public void backFunction(){
+			AppController.selectedDetails();
 			hide();
 		}
 		public void die() {
 			frame.dispose();
 		}
-		public void saveAndBack(String userId) {
-			AppController.selectedDetails(userId);
+		public void saveAndBack() {
+			AppController.selectedDetails();
 			die();
 		}
 	}

@@ -34,14 +34,17 @@ public class PdCreateFrame {
 	/**
 	 * Create the application.
 	 */
-	public PdCreateFrame(int id) {
-		initialize(id);
+	public PdCreateFrame() {
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int id) {
+	private void initialize() {
+		
+		int id = Db.getSelectedUser().getId();
+		
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(PdCreateFrame.class.getResource("/authApp/img/LogoNoText.png")));
@@ -53,7 +56,7 @@ public class PdCreateFrame {
 		frame.getContentPane().setLayout(null);
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
-			     backFunction(input);
+			     backFunction();
 			}
 		});
 		frame.setLocationRelativeTo(null); 
@@ -223,7 +226,7 @@ public class PdCreateFrame {
 	    JButton btnBack = new JButton("BACK");
 	    btnBack.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		backFunction(input);
+	    		backFunction();
 	    	}
 	    });
 	    btnBack.setBounds(269, 429, 89, 23);
@@ -263,9 +266,9 @@ public class PdCreateFrame {
 	    		Db.getSelectedUserDetails().setEmergencyNum(newEmergencyNum);
 	    		Db.getSelectedUserDetails().setEmergencyContact(newEmergencyContact);
 	    		
-	    		AppController.insertMyDetails(id);
+	    		AppController.insertMyDetails();
 	    		
-	    		saveAndBack(input);
+	    		saveAndBack();
 	    		
 	    		
 	    	}
@@ -281,16 +284,16 @@ public class PdCreateFrame {
 		public void show() {
 			frame.setVisible(true);
 		}
-		public void backFunction(String input){
-			AppController.selectedDetails(input);
+		public void backFunction(){
+			AppController.selectedDetails();
 			die();
 		}
 		public void die() {
 			frame.dispose();
 		}
-		public void saveAndBack(String in) {
+		public void saveAndBack() {
 			
-			AppController.selectedDetails(in);
+			AppController.selectedDetails();
 			die();
 		}
 	}

@@ -42,4 +42,13 @@ public class User {
 	public void setId(int input) {
 		id = input;
 	}
+	public void setFirstName(String input) {
+		firstName = input;
+	}
+	public void setLastName(String input) {
+		lastName = input;
+	}
+	public void setRole(String input) {
+		role = input;
+	}
 }

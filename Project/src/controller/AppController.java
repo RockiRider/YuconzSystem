@@ -117,14 +117,14 @@ public class AppController {
      * Creates a Frame for the selected user, that gives an overview of the selected User and actions that can be taken.
      * @param id
      */
-    public static void selectedDetails(String id) {
-    	int input = Integer.parseInt(id);
-    	connection.findUser(input);
+    public static void selectedDetails() {
+    	//int id = connection.getSelectedUser().getId();
+    	connection.findUser();
     	
-    	if(connection.matchPersonalDetails(input)) {
-    		userInfo = new UserOverview(true,input);
+    	if(connection.matchPersonalDetails()) {
+    		userInfo = new UserOverview(true);
     	}else {
-    		userInfo = new UserOverview(false,input);
+    		userInfo = new UserOverview(false);
     	}
     	
     }
@@ -133,26 +133,26 @@ public class AppController {
      * Creates a Frame that allows allows User to create Personal Details for another Employee
      * @param id
      */
-    public static void createDetails(int id) {
+    public static void createDetails() {
     	connection.creatingPd();
-    	createPersonalDetails = new PdCreateFrame(id);
+    	createPersonalDetails = new PdCreateFrame();
     }
     
     /**
      * Creates a Frame that allows user to view other Employees Personal Details
      * @param id
      */
-    public static void viewDetails(int id) {
-    	connection.pullDetails(id);
-    	viewPersonalDetails = new PDFrame(id);
+    public static void viewDetails() {
+    	connection.pullDetails();
+    	viewPersonalDetails = new PDFrame();
     }
     
     /**
      * Inserts new entry into PersonalDetails Table, by calling the method that handles that.
      * @param id
      */
-    public static void insertMyDetails(int id) {
-    	connection.insertNew(id);
+    public static void insertMyDetails() {
+    	connection.insertNew();
     }
     
     /**
@@ -166,8 +166,8 @@ public class AppController {
      * Updates selected Employees Personal Details, by calling the method that handles that.
      * @param id
      */
-    public static void saveTheirDetails(int id) {
-    	connection.pushDetails(id);
+    public static void saveTheirDetails() {
+    	connection.pushDetails();
     }
     
     
