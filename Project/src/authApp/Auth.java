@@ -47,7 +47,7 @@ public class Auth {
 			
 			try {
 				
-	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
+	            FileWriter writer = new FileWriter("AuthenticationLogs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
 	            writer.write(outcome +"\t "+ uName +" \t "+ pwd +" \t "+ formatted);
@@ -58,7 +58,7 @@ public class Auth {
 			
 		}else {
 			try {
-	            FileWriter writer = new FileWriter("AuthorisationLogs.txt", true);
+	            FileWriter writer = new FileWriter("AuthenticationLogs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
 	            writer.write(outcome +"\t \t "+ uName +" \t "+ pwd +" \t "+ formatted);
