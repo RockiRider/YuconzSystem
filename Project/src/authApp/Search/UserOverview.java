@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import controller.*;
+import authApp.Auth;
 import authApp.MainDisplay;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -41,7 +42,7 @@ public class UserOverview {
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(UserOverview.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
 		frame.getContentPane().setFont(new Font("Calibri", Font.BOLD, 26));
-		frame.setBounds(100, 100, 450, 301);
+		frame.setBounds(100, 100, 545, 392);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.addWindowListener(new WindowAdapter() {
@@ -58,7 +59,7 @@ public class UserOverview {
 		
 		JLabel lblNewLabel = new JLabel(fullName);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(112, 11, 218, 38);
+		lblNewLabel.setBounds(160, 11, 218, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btncreateBtn = new JButton("Create Personal Details");
@@ -68,7 +69,7 @@ public class UserOverview {
 				die();
 			}
 		});
-		btncreateBtn.setBounds(112, 99, 218, 32);
+		btncreateBtn.setBounds(160, 169, 218, 32);
 		frame.getContentPane().add(btncreateBtn);
 		
 		JButton btnView = new JButton("View Personal Details");
@@ -78,7 +79,7 @@ public class UserOverview {
 				die();
 			}
 		});
-		btnView.setBounds(112, 154, 218, 32);
+		btnView.setBounds(160, 228, 218, 32);
 		frame.getContentPane().add(btnView);
 		
 		JButton btnBack = new JButton("Back");
@@ -88,14 +89,26 @@ public class UserOverview {
 				die();
 			}
 		});
-		btnBack.setBounds(10, 223, 89, 23);
+		btnBack.setBounds(10, 312, 89, 23);
 		frame.getContentPane().add(btnBack);
 		
+		JButton btnNewButton = new JButton("View Reviews");
+		btnNewButton.setBounds(160, 107, 218, 32);
+		frame.getContentPane().add(btnNewButton);
+		
+		// Checks if Personal Details Exists or not
 		if(exists) {
 			btncreateBtn.setVisible(false);
 		}else {
 			btnView.setVisible(false);
 		}
+		
+		// Checks to see if the current User has HR Access or not.
+		if(!Auth.getCurrentUser().getHrAccess()) {
+			btnView.setVisible(false);
+			btncreateBtn.setVisible(false);
+		}
+		
 		frame.setVisible(true);
 		
 	}
