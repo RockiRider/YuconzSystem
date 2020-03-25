@@ -50,7 +50,7 @@ public class Auth {
 	            FileWriter writer = new FileWriter("Authentication_Logs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
-	            writer.write(outcome +"\t "+ uName +" \t "+ pwd +" \t "+ formatted);
+	            writer.write(outcome +"\t "+ uName +" \t \t "+ pwd +" \t "+ formatted);
 	            writer.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -61,7 +61,7 @@ public class Auth {
 	            FileWriter writer = new FileWriter("Authentication_Logs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
-	            writer.write(outcome +"\t \t "+ uName +" \t "+ pwd +" \t "+ formatted);
+	            writer.write(outcome +"\t \t "+ uName +" \t \t "+ pwd +" \t "+ formatted);
 	            writer.close();
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -101,9 +101,9 @@ public class Auth {
 		
 		try {
             FileWriter writer = new FileWriter("Authorisation_Logs.txt", true);
-            writer.write("\r\n"+"--------------------------------------------------------------------"); 
+            writer.write("\r\n"+"------------------------------------------------------------------------------------"); 
             writer.write("\r\n");
-            writer.write(name + " \t "+ role + " \t "+ higherAccess + " \t "+ hrAccess+ " \t " + formatted);
+            writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t \t "+ hrAccess+ " \t " + formatted);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();

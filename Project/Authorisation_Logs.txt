@@ -1,5 +1,8 @@
-Full Name	    Role	Higher Access	 HR Access	    Date & Time
---------------------------------------------------------------------
-Alex Smith 	 HR Director 	 Authorised 	 Authorised 	 25/03/2020 20:52:51
---------------------------------------------------------------------
-Alex Smith 	 HR Director 	 Authorised 	 Authorised 	 25/03/2020 20:53:28
+Full Name	    Role	        Higher Access	          HR Access	    Date & Time
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Alex Smith 	  HR Director 	 	 Authorised 	 	 Authorised 	 25/03/2020 21:08:13
+------------------------------------------------------------------------------------
+Alex Smith 	  HR Director 	 	 Authorised 	 	 Authorised 	 25/03/2020 21:08:16
+------------------------------------------------------------------------------------
+Adil Jawad 	  Employee 	 	 Not Authorised 		Not Authorised 	 25/03/2020 21:08:21
