@@ -6,10 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-
 import javax.swing.JOptionPane;
-
 import authApp.Roles.*;
+
+
 /**
  * This class ensures authentication. It connects to the SQL Lite Database and tries to find the user thats currently logging in. 
  * Depending on the user's role within the company then creates an object of the correct role for the user.
@@ -43,11 +43,11 @@ public class Auth {
 		String formatted = currentTime.format(dtf);
 		
 		if(success) {
-			setOutcome(outcome = "Successful");
+			outcome = "Successful";
 			
 			try {
 				
-	            FileWriter writer = new FileWriter("AuthenticationLogs.txt", true);
+	            FileWriter writer = new FileWriter("Authentication_Logs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
 	            writer.write(outcome +"\t "+ uName +" \t "+ pwd +" \t "+ formatted);
@@ -58,7 +58,7 @@ public class Auth {
 			
 		}else {
 			try {
-	            FileWriter writer = new FileWriter("AuthenticationLogs.txt", true);
+	            FileWriter writer = new FileWriter("Authentication_Logs.txt", true);
 	            writer.write("\r\n"+"--------------------------------------------------------------------"); 
 	            writer.write("\r\n");
 	            writer.write(outcome +"\t \t "+ uName +" \t "+ pwd +" \t "+ formatted);
@@ -72,22 +72,46 @@ public class Auth {
 	}
 	
 	/**
-	 * Set the new outcome status for login.
-	 * @param newOutcome
-	 * @return outcome
+	 * Logs Authorisation of the Authenticated User.
 	 */
-	public String setOutcome(String newOutcome) {
-		outcome = newOutcome;
-		return outcome;
+	public void logAuth() {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime currentTime = LocalDateTime.now();
+		String formatted = currentTime.format(dtf);
+		String auth = "Authorised";
+		String notAuth = "Not Authorised";
+		String higherAccess;
+		String hrAccess;
+		
+		String name = currentUser.getFirstName()+" "+currentUser.getLastName();
+		String role = currentUser.getRole();
+		
+		if(currentUser.getAccess()) {
+			higherAccess = auth;
+		}else {
+			higherAccess = notAuth;
+		}
+		
+		if(currentUser.getHrAccess()) {
+			hrAccess = auth;
+		}else {
+			hrAccess = notAuth;
+		}
+		
+		try {
+            FileWriter writer = new FileWriter("Authorisation_Logs.txt", true);
+            writer.write("\r\n"+"--------------------------------------------------------------------"); 
+            writer.write("\r\n");
+            writer.write(name + " \t "+ role + " \t "+ higherAccess + " \t "+ hrAccess+ " \t " + formatted);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		
 	}
-	
-	/**
-	 * Get the current outcome of login.
-	 * @return outcome
-	 */
-	public String getOutcome() {
-		return outcome;
-	}
+
 	
 	/**
 	* Connect to the LOCAL Database
@@ -161,6 +185,14 @@ public class Auth {
 	 */
 	public static User getCurrentUser() {
 		return currentUser;
+	}
+	
+	/**
+	 * Get the current outcome of login.
+	 * @return outcome
+	 */
+	public String getOutcome() {
+		return outcome;
 	}
 
 }

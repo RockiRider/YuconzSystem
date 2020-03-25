@@ -55,6 +55,7 @@ public class AppController {
     		try {
     			auth.logAttempt(uName, pwd, true);
     			AppController.loginFrame.remove();
+    			auth.logAuth();
     			mainFrame = new MainDisplay();
 			} catch (Exception e) {
 				e.printStackTrace();
