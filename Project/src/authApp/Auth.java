@@ -101,9 +101,15 @@ public class Auth {
 		
 		try {
             FileWriter writer = new FileWriter("Authorisation_Logs.txt", true);
-            writer.write("\r\n"+"------------------------------------------------------------------------------------"); 
+            writer.write("\r\n"+"-----------------------------------------------------------------------------------------------------------"); 
             writer.write("\r\n");
-            writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t \t "+ hrAccess+ " \t " + formatted);
+            
+            if(currentUser.getAccess()) {
+            	writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t \t "+ hrAccess+ " \t \t " + formatted);
+            }else {
+            	writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t "+ hrAccess+ " \t " + formatted);
+            }
+            
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
