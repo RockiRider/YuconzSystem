@@ -27,7 +27,7 @@ public class Db {
 		populateAllEmployees();
 		convertData();
 		selectedUserDetails = new PdStore();
-		selectedUser = new User(" ", " ", " ", false, 0);
+		selectedUser = new User(" ", " ", " ", false, false, 0);
 	}
 	
 	/**
