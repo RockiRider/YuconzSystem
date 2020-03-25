@@ -21,7 +21,6 @@ public class Auth {
 	
 	private Connection myDb = null;
 	private static User currentUser;
-	private static int id;
 	private String outcome;
 	
 	/**
