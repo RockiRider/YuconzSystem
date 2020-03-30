@@ -15,7 +15,7 @@ import controller.*;
  */
 public class MainDisplay {
 
-	private JFrame frmYuconzSystem;
+	private JFrame frame;
 	private boolean accessLevel;
 	private boolean tempAccessLevel;
 
@@ -31,17 +31,17 @@ public class MainDisplay {
 	 * Initialise the contents of the frame.
 	 */
 	private void initialize() {
-		frmYuconzSystem = new JFrame();
-		frmYuconzSystem.setTitle("Yuconz System");
+		frame = new JFrame();
+		frame.setTitle("Yuconz System");
 		
-		frmYuconzSystem.setIconImage(
+		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(MainDisplay.class.getResource("/authApp/img/LogoNoText.png")));
-		frmYuconzSystem.setBounds(100, 100, 715, 433);
+		frame.setBounds(100, 100, 715, 433);
 		
-		frmYuconzSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmYuconzSystem.getContentPane().setLayout(null);
-		frmYuconzSystem.setLocationRelativeTo(null); 
-		frmYuconzSystem.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null); 
+		frame.setVisible(true);
 
 		JButton btnLogout = new JButton("LOGOUT");
 		btnLogout.addActionListener(new ActionListener() {
@@ -50,7 +50,7 @@ public class MainDisplay {
 			}
 		});
 		btnLogout.setBounds(581, 360, 89, 23);
-		frmYuconzSystem.getContentPane().add(btnLogout);
+		frame.getContentPane().add(btnLogout);
 
 		// Get USER INFO
 
@@ -71,20 +71,20 @@ public class MainDisplay {
 		lblName.setText(fName + " " + sName);
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setBounds(131, 100, 436, 23);
-		frmYuconzSystem.getContentPane().add(lblName);
+		frame.getContentPane().add(lblName);
 
 		JLabel lblRole = new JLabel("Role: " + role);
 		lblRole.setBounds(10, 11, 157, 14);
-		frmYuconzSystem.getContentPane().add(lblRole);
+		frame.getContentPane().add(lblRole);
 
 		JLabel lblAccessLevel = new JLabel("Access Level: " + accessLvl);
 		lblAccessLevel.setBounds(10, 36, 186, 14);
-		frmYuconzSystem.getContentPane().add(lblAccessLevel);
+		frame.getContentPane().add(lblAccessLevel);
 
 		JLabel lblWelcome = new JLabel("Welcome,");
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome.setBounds(131, 81, 436, 14);
-		frmYuconzSystem.getContentPane().add(lblWelcome);
+		frame.getContentPane().add(lblWelcome);
 		
 		JButton btnMyPd = new JButton("My Personal Details");
 		btnMyPd.addActionListener(new ActionListener() {
@@ -93,11 +93,11 @@ public class MainDisplay {
 			}
 		});
 		btnMyPd.setBounds(271, 164, 157, 23);
-		frmYuconzSystem.getContentPane().add(btnMyPd);
+		frame.getContentPane().add(btnMyPd);
 		JButton btnChangeAccess = new JButton("Toggle Access Level");
 		
 		btnChangeAccess.setBounds(10, 61, 157, 23);
-		frmYuconzSystem.getContentPane().add(btnChangeAccess);
+		frame.getContentPane().add(btnChangeAccess);
 		
 		JButton btnEmployees = new JButton("All Employees");
 		btnEmployees.addActionListener(new ActionListener() {
@@ -106,7 +106,7 @@ public class MainDisplay {
 			}
 		});
 		btnEmployees.setBounds(271, 235, 157, 23);
-		frmYuconzSystem.getContentPane().add(btnEmployees);
+		frame.getContentPane().add(btnEmployees);
 		btnChangeAccess.setVisible(false);
 		
 		btnChangeAccess.addActionListener(new ActionListener() {
@@ -135,12 +135,12 @@ public class MainDisplay {
 
 	}
 	public void hide() {
-		frmYuconzSystem.setVisible(false);
+		frame.setVisible(false);
 	}
 	public void show() {
-		frmYuconzSystem.setVisible(true);
+		frame.setVisible(true);
 	}
 	public void die() {
-		frmYuconzSystem.dispose();
+		frame.dispose();
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import authApp.*;
 import authApp.PD.*;
+import authApp.Review.ReviewFrame;
 import authApp.Search.*;
 
 /**
@@ -27,6 +28,7 @@ public class AppController {
 	private static Db connection;
 	private static PdCreateFrame createPersonalDetails;
 	private static PDFrame viewPersonalDetails;
+	private static ReviewFrame mainReviewFrame;
 	
 	/**
 	* Launch the application.
@@ -68,12 +70,36 @@ public class AppController {
     		    JOptionPane.WARNING_MESSAGE);
     	}
     }
+    
+    public static void reviewMenu(String uName, String pwd) {
+    	
+    	Auth auth = new Auth();
+    	if(auth.checkValidUser(uName, pwd)) {
+    		try {
+    			auth.logAttempt(uName, pwd, true);
+    			AppController.loginFrame.remove();
+    			auth.logAuth();
+    			mainReviewFrame = new ReviewFrame();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		auth.logAttempt(uName, pwd, false);
+    		JOptionPane.showMessageDialog(null,
+    		    "Username or Password is incorrect.",
+    		    "Warning",
+    		    JOptionPane.WARNING_MESSAGE);
+    	}
+    	
+    }
+    
     /**
-     * Logs out the User and closes the System
+     * Logs out the User and closes the System. We check if any of the frames have ever been opened since run time. If they have we dispose all of them. And run the main method again.
      */
     public static void logOut() {
-    	main(null);
-    	removeMain();
+    	if(mainFrame != null) {
+    		mainFrame.die();
+    	}
     	if(searchFrame != null) {
     		searchFrame.die();
     	}
@@ -86,6 +112,10 @@ public class AppController {
     	if(viewPersonalDetails != null) {
     		viewPersonalDetails.die();
     	}
+    	if(mainReviewFrame != null) {
+    		mainReviewFrame.die();
+    	}
+    	main(null);		// Runs main method again
     }
     /**
      * Generates Personal Details Frame and Populates it
@@ -171,7 +201,9 @@ public class AppController {
     	connection.pushDetails();
     }
     
-    
+    /**
+     * Frame killings and creation takes place below
+     */
     public static void showMain() {
     	mainFrame.show();
     }
