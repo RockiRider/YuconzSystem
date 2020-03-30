@@ -15,6 +15,12 @@ import controller.AppController;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
+
+/**
+ * This is the main display that is generated after a user has logged in successfully, with the reviewer checkbox checked. 
+ * @author Tsotne
+ *
+ */
 public class ReviewFrame {
 
 	private JFrame frame;
