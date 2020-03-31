@@ -16,8 +16,8 @@ import controller.*;
 public class MainDisplay {
 
 	private JFrame frmYuconzSystem;
-	private boolean accessLevel;
-	private boolean tempAccessLevel;
+	private boolean accessLevel;	// This will fluctuate 
+	private boolean realAccessLevel;	// This is a constant
 
 	/**
 	 * Create the Frame.
@@ -59,7 +59,7 @@ public class MainDisplay {
 		String role = Auth.getCurrentUser().getRole();
 		int userId = Auth.getCurrentUser().getId();
 		accessLevel = Auth.getCurrentUser().getAccess();
-		tempAccessLevel = accessLevel;
+		realAccessLevel = accessLevel;
 		
 		
 		String accessLvl = "Normal";
@@ -105,6 +105,7 @@ public class MainDisplay {
 				AppController.showLookUp();
 			}
 		});
+		
 		btnEmployees.setBounds(271, 235, 157, 23);
 		frmYuconzSystem.getContentPane().add(btnEmployees);
 		btnChangeAccess.setVisible(false);
@@ -115,17 +116,19 @@ public class MainDisplay {
 					lblAccessLevel.setText("Access Level: Normal");
 					btnEmployees.setVisible(false);
 					accessLevel = false;
+					AppController.toggleAuthorisation(accessLevel);
 					
 				}else{
 					lblAccessLevel.setText("Access Level: High");
 					btnEmployees.setVisible(true);
 					accessLevel = true;
+					AppController.toggleAuthorisation(accessLevel);
 					
 				}
 			}
 		});
 		
-		if(tempAccessLevel) {
+		if(realAccessLevel) {
 			btnChangeAccess.setVisible(true);
 		}
 		if(!accessLevel) {
