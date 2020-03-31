@@ -222,7 +222,7 @@ public class AppController {
     
     public static void createNewReview() {
     	hrDb = new HRDatabase();
-    	createReviewFrame = new CreateReview();
+    	createReviewFrame = new CreateReview(hrDb.getReviewers());
     	
     }
     

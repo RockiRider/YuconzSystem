@@ -23,17 +23,18 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
+/**
+ * This class renders the GUI for creating a review process. It takes all employees apart from the selected user, as a parameter and displays this data in a Jtable.
+ * @author Tsotne
+ *
+ */
 public class CreateReview {
 
 	private JFrame frame;
 	private String[] columnNames = {"Staff ID","First Name","Last Name","Role"};
-	private String[][] input ={
-			{"1","Tsot","Gvad","Programmer"},
-			{"2","Sam","Ling","Web Developer"}
-			};
-	
-	
 	private static JTable table;
 	private JTextField txtRev1;
 	private JTextField txtRev2;
@@ -45,14 +46,14 @@ public class CreateReview {
 	/** 
 	 * Create the application.
 	 */
-	public CreateReview() {
-		initialize();
+	public CreateReview(String[][] input) {
+		initialize(input);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String[][] input) {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(CreateReview.class.getResource("/authApp/img/LogoNoText.png")));
 		frame.setTitle("Yuconz System");
@@ -73,6 +74,7 @@ public class CreateReview {
 		
 		
 		table = new JTable(input, columnNames);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
 		JScrollPane sp = new JScrollPane(table);
 		sp.setBounds(232, 0, 452, 427);
@@ -140,48 +142,46 @@ public class CreateReview {
 		frame.getContentPane().add(btnCreate);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtRev1.setText(null);
+				txtRev2.setText(null);
+			}
+		});
 		btnBack.setBounds(132, 291, 89, 23);
 		frame.getContentPane().add(btnBack);
-		
-		
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 	        public void valueChanged(ListSelectionEvent event) {
-	            //do some actions here, for example
-	            //print first column value from selected row
-	        	//We want to get their staff id
-	            //System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
 	        	int row = table.getSelectedRow();
-	        	String staffId = table.getModel().getValueAt(row, 0).toString();
-	        	String staffFirstName = table.getModel().getValueAt(row, 1).toString();
-	        	String staffLastName = table.getModel().getValueAt(row, 2).toString();
-	        	int selectedId = Integer.parseInt(staffId);
-	        	
-	        	
-	        	// This Needs Attention
-	        	if(selectedId != firstId) {
-	        		
-	        		
-	        		if(!firstLocked) {
-		        		txtRev1.setText(staffFirstName+" "+ staffLastName);
-		        		firstId = Integer.parseInt(staffId);
-		        	}else {
-		        		if(!secondLocked) {
-		        			txtRev2.setText(staffFirstName+" "+ staffLastName);
-		        			secondId = Integer.parseInt(staffId);
-		        		}else {
+	        	if (!event.getValueIsAdjusting() & row >= 0 ) {
+		        	String staffId = table.getValueAt(row, 0).toString();
+		        	String staffFirstName = table.getValueAt(row, 1).toString();
+		        	String staffLastName = table.getValueAt(row, 2).toString();
+		        	int selectedId = Integer.parseInt(staffId);
+		        		if(!firstLocked) {
+			        		txtRev1.setText(staffFirstName+" "+ staffLastName);
+			        		firstId = selectedId;
+			        		
+			        	}else {
+			        		if(!secondLocked) {
+			        			txtRev2.setText(staffFirstName+" "+ staffLastName);
+			        			secondId = selectedId;
+			        		}else {
+			        			JOptionPane.showMessageDialog(null,
+			                		    "You have locked in both Reviewers. Unlock before changing a Reviewer.",
+			                		    "Error",
+			                		    JOptionPane.ERROR_MESSAGE);
+			        		}
+			        	}
+		        		if(secondId == firstId) {
 		        			JOptionPane.showMessageDialog(null,
-		                		    "You have locked in both Reviewers.Unlock before changing a Reviewer.",
+		                		    "You cannot pick the same person twice. Choose someone else.",
 		                		    "Error",
 		                		    JOptionPane.ERROR_MESSAGE);
+		        			
+		        			txtRev2.setText(null);
 		        		}
-		        	}
-	        		
-	        	}else {
-	        		if(selectedId != secondId) {
-	        			
-	        		}else {
-	        			
-	        		}
+		        		table.getSelectionModel().clearSelection();
 	        	}
 	        	
 	        }

@@ -13,7 +13,11 @@ import javax.swing.JOptionPane;
 import authApp.User;
 import authApp.PD.PdStore;
 
-
+/**
+ * This class interacts with the Database when concerning anything to do with Personal Details.
+ * @author Tsotne
+ *
+ */
 public class Db {
 
 	private static User selectedUser;
