@@ -100,7 +100,7 @@ public class Auth {
 		
 		try {
             FileWriter writer = new FileWriter("Authorisation_Logs.txt", true);
-            writer.write("\r\n"+"-----------------------------------------------------------------------------------------------------------"); 
+            writer.write("\r\n"+"------------------------------------------------------------------------------------------------------------"); 
             writer.write("\r\n");
             
             if(currentUser.getAccess()) {
@@ -117,6 +117,48 @@ public class Auth {
 		
 	}
 
+	public void toggleLog(boolean input) {
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		LocalDateTime currentTime = LocalDateTime.now();
+		String formatted = currentTime.format(dtf);
+		String auth = "Authorised";
+		String notAuth = "Not Authorised";
+		String higherAccess;
+		String hrAccess;
+		
+		String name = currentUser.getFirstName()+" "+currentUser.getLastName();
+		String role = currentUser.getRole();
+		
+		if(input) {
+			higherAccess = auth;
+		}else {
+			higherAccess = notAuth;
+		}
+		
+		if(currentUser.getHrAccess()) {
+			hrAccess = auth;
+		}else {
+			hrAccess = notAuth;
+		}
+		
+		try {
+            FileWriter writer = new FileWriter("Authorisation_Logs.txt", true);
+            writer.write("\r\n"+"------------------------------------------------------------------------------------------------------------"); 
+            writer.write("\r\n");
+            
+            if(input) {
+            	writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t \t "+ hrAccess+ " \t \t " + formatted);
+            }else {
+            	writer.write(name + " \t  "+ role + " \t \t "+ higherAccess + " \t "+ hrAccess+ " \t \t " + formatted);
+            }
+            
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 	
 	/**
 	* Connect to the LOCAL Database

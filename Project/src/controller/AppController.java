@@ -17,7 +17,7 @@ This is the App Controller, essentially the main class for the Application that 
 */
 public class AppController {
 
-	//private User session;
+	private static Auth auth;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdFrame myPdFrame;
@@ -50,7 +50,7 @@ public class AppController {
 	 */
 
     public static void logIn(String uName, String pwd) {
-    	Auth auth = new Auth();
+    	auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
     		try {
     			auth.logAttempt(uName, pwd, true);
@@ -67,6 +67,12 @@ public class AppController {
     		    "Warning",
     		    JOptionPane.WARNING_MESSAGE);
     	}
+    }
+    /**
+     * Logs the new Authorisation via the Toggle into the Authorisation_Logs.txt file
+     */
+    public static void toggleAuthorisation(boolean input) {
+    	auth.toggleLog(input);
     }
     /**
      * Logs out the User and closes the System
