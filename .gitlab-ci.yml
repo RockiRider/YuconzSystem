@@ -1,0 +1,8 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: normal
+
+rspec:
+  stage: test
+  before_script:
+    - ls
+    - cd System
