@@ -1,3 +1,3 @@
-[submodule "System"]
-	path = System
-	url = https://git.cs.kent.ac.uk/co510/27a.git
+[submodule "Gradle"]
+	path = Gradle
+	url = ../../co510/27a
