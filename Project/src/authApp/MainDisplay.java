@@ -15,7 +15,7 @@ import controller.*;
  */
 public class MainDisplay {
 
-	private JFrame frmYuconzSystem;
+	private JFrame frame;
 	private boolean accessLevel;	// This will fluctuate 
 	private boolean realAccessLevel;	// This is a constant
 
