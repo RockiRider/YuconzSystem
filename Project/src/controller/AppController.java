@@ -106,6 +106,14 @@ public class AppController {
     	
     }
     
+    
+    /**
+     * Logs the new Authorisation via the Toggle into the Authorisation_Logs.txt file
+     */
+    public static void toggleAuthorisation(boolean input) {
+    	auth.toggleLog(input);
+    }
+    
     /**
      * Logs out the User and closes the System. We check if any of the frames have ever been opened since run time. 
      * If they have we dispose all of them. And run the main method again.
@@ -223,7 +231,6 @@ public class AppController {
     public static void createNewReview() {
     	hrDb = new HRDatabase();
     	createReviewFrame = new CreateReview(hrDb.getReviewers());
-    	
     }
     
     /**
