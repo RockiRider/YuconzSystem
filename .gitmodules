@@ -1,3 +1,3 @@
 [submodule "System"]
 	path = System
-	url = ../../yuconz-system.git
+	url = https://git.cs.kent.ac.uk/tg289/yuconz-system.git
