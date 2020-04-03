@@ -62,15 +62,15 @@ public class UserOverview {
 		lblNewLabel.setBounds(160, 11, 218, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btncreateBtn = new JButton("Create Personal Details");
-		btncreateBtn.addActionListener(new ActionListener() {
+		JButton btnCreateBtn = new JButton("Create Personal Details");
+		btnCreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AppController.createDetails();
 				die();
 			}
 		});
-		btncreateBtn.setBounds(160, 169, 218, 32);
-		frame.getContentPane().add(btncreateBtn);
+		btnCreateBtn.setBounds(160, 214, 218, 32);
+		frame.getContentPane().add(btnCreateBtn);
 		
 		JButton btnView = new JButton("View Personal Details");
 		btnView.addActionListener(new ActionListener() {
@@ -79,7 +79,7 @@ public class UserOverview {
 				die();
 			}
 		});
-		btnView.setBounds(160, 228, 218, 32);
+		btnView.setBounds(160, 271, 218, 32);
 		frame.getContentPane().add(btnView);
 		
 		JButton btnBack = new JButton("Back");
@@ -92,13 +92,23 @@ public class UserOverview {
 		btnBack.setBounds(10, 312, 89, 23);
 		frame.getContentPane().add(btnBack);
 		
-		JButton btnNewButton = new JButton("View Reviews");
-		btnNewButton.setBounds(160, 107, 218, 32);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnViewRev = new JButton("View Review Records");
+		btnViewRev.setBounds(160, 107, 218, 32);
+		frame.getContentPane().add(btnViewRev);
+		
+		JButton btnStartRev = new JButton("Start Review Process");
+		btnStartRev.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppController.createNewReview();
+				die();
+			}
+		});
+		btnStartRev.setBounds(160, 160, 218, 32);
+		frame.getContentPane().add(btnStartRev);
 		
 		// Checks if Personal Details Exists or not
 		if(exists) {
-			btncreateBtn.setVisible(false);
+			btnCreateBtn.setVisible(false);
 		}else {
 			btnView.setVisible(false);
 		}
@@ -106,7 +116,8 @@ public class UserOverview {
 		// Checks to see if the current User has HR Access or not.
 		if(!Auth.getCurrentUser().getHrAccess()) {
 			btnView.setVisible(false);
-			btncreateBtn.setVisible(false);
+			btnCreateBtn.setVisible(false);
+			btnStartRev.setVisible(false);
 		}
 		
 		frame.setVisible(true);

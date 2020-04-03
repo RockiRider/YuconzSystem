@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import authApp.*;
 import authApp.PD.*;
+import authApp.Review.*;
 import authApp.Search.*;
 
 /**
@@ -27,6 +28,9 @@ public class AppController {
 	private static Db connection;
 	private static PdCreateFrame createPersonalDetails;
 	private static PDFrame viewPersonalDetails;
+	private static ReviewFrame mainReviewFrame;
+	private static CreateReview createReviewFrame;
+	private static HRDatabase hrDb;
 	
 	/**
 	* Launch the application.
@@ -44,7 +48,10 @@ public class AppController {
 	}
 	
 	/**
-	 * Authorises the login and checks if the user is valid and in the database
+	 * Authenticates & Authorises the login and checks if the user is valid in the database.
+	 * Then proceeds to Log the Authentication and Authorisation.
+	 * Directs the User to the Employee Main Display Frame (Essentially a Portal).
+	 * 
 	 * @param uName username
 	 * @param pwd password
 	 */
@@ -68,18 +75,45 @@ public class AppController {
     		    JOptionPane.WARNING_MESSAGE);
     	}
     }
+    
     /**
-     * Logs the new Authorisation via the Toggle into the Authorisation_Logs.txt file
+     * Authenticates & Authorises the login and checks if the user is valid in the database.
+     * Then proceeds to Log the Authentication and Authorisation.
+     * Directs the User to the Reviewers Main Display Frame (Essentially a Portal).
+     * 
+     * @param uName
+     * @param pwd
      */
-    public static void toggleAuthorisation(boolean input) {
-    	auth.toggleLog(input);
+    public static void reviewMenu(String uName, String pwd) {
+    	
+    	Auth auth = new Auth();
+    	if(auth.checkValidUser(uName, pwd)) {
+    		try {
+    			auth.logAttempt(uName, pwd, true);
+    			AppController.loginFrame.remove();
+    			auth.logAuth();
+    			mainReviewFrame = new ReviewFrame();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else {
+    		auth.logAttempt(uName, pwd, false);
+    		JOptionPane.showMessageDialog(null,
+    		    "Username or Password is incorrect.",
+    		    "Warning",
+    		    JOptionPane.WARNING_MESSAGE);
+    	}
+    	
     }
+    
     /**
-     * Logs out the User and closes the System
+     * Logs out the User and closes the System. We check if any of the frames have ever been opened since run time. 
+     * If they have we dispose all of them. And run the main method again.
      */
     public static void logOut() {
-    	main(null);
-    	removeMain();
+    	if(mainFrame != null) {
+    		mainFrame.die();
+    	}
     	if(searchFrame != null) {
     		searchFrame.die();
     	}
@@ -92,10 +126,18 @@ public class AppController {
     	if(viewPersonalDetails != null) {
     		viewPersonalDetails.die();
     	}
+    	if(mainReviewFrame != null) {
+    		mainReviewFrame.die();
+    	}
+    	if(createReviewFrame != null) {
+    		createReviewFrame.die();
+    	}
+    	main(null);		// Runs main method again
     }
+    
     /**
-     * Generates Personal Details Frame and Populates it
-     * @param id
+     * Generates Personal Details Frame and Populates the details in it, from the database.
+     * 
      */
     public static void generatePd() {
     	
@@ -112,6 +154,7 @@ public class AppController {
     		showMain();
     	}
     }
+    
     /**
      * Creates a Frame that shows all Current Employees in a table.
      */
@@ -122,7 +165,7 @@ public class AppController {
     
     /**
      * Creates a Frame for the selected user, that gives an overview of the selected User and actions that can be taken.
-     * @param id
+     * 
      */
     public static void selectedDetails() {
     	//int id = connection.getSelectedUser().getId();
@@ -138,7 +181,7 @@ public class AppController {
     
     /**
      * Creates a Frame that allows allows User to create Personal Details for another Employee
-     * @param id
+     * 
      */
     public static void createDetails() {
     	connection.creatingPd();
@@ -147,7 +190,7 @@ public class AppController {
     
     /**
      * Creates a Frame that allows user to view other Employees Personal Details
-     * @param id
+     * 
      */
     public static void viewDetails() {
     	connection.pullDetails();
@@ -156,7 +199,7 @@ public class AppController {
     
     /**
      * Inserts new entry into PersonalDetails Table, by calling the method that handles that.
-     * @param id
+     * 
      */
     public static void insertMyDetails() {
     	connection.insertNew();
@@ -164,20 +207,28 @@ public class AppController {
     
     /**
      * Updates the current users PersonalDetails in the Database, by calling the method that handles that.
-     * @param id
+     * 
      */
     public static void saveMyDetails() {
     	detailsLookUp.pushDetails();
     }
     /**
      * Updates selected Employees Personal Details, by calling the method that handles that.
-     * @param id
+     * 
      */
     public static void saveTheirDetails() {
     	connection.pushDetails();
     }
     
+    public static void createNewReview() {
+    	hrDb = new HRDatabase();
+    	createReviewFrame = new CreateReview(hrDb.getReviewers());
+    	
+    }
     
+    /**
+     * Frame killings and creation takes place below
+     */
     public static void showMain() {
     	mainFrame.show();
     }
