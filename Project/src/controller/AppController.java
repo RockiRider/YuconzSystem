@@ -18,7 +18,7 @@ This is the App Controller, essentially the main class for the Application that 
 */
 public class AppController {
 
-	
+	private static Auth auth;
 	private static LoginDisplay loginFrame;
 	private static MainDisplay mainFrame;
 	private static MyPdFrame myPdFrame;
@@ -57,7 +57,7 @@ public class AppController {
 	 */
 
     public static void logIn(String uName, String pwd) {
-    	Auth auth = new Auth();
+    	auth = new Auth();
     	if(auth.checkValidUser(uName, pwd)) {
     		try {
     			auth.logAttempt(uName, pwd, true);
