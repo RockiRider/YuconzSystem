@@ -44,7 +44,7 @@ a {
 }
 
 .nav li a:hover {
-	background-color: red;
+	background-color: black;
 }
 
 /* Hero Section */
@@ -192,8 +192,9 @@ appears on the left side of the page.
 	position: relative;
 	height: 100%;
 	z-index: 1000; /* so the menu or its navicon stays above all content */
-	background: #e5e5e6;
+	background: rgb(189, 188, 188);
 	overflow: hidden;
+	
 }
 /*
     All anchors inside the menu should be styled like this.
@@ -347,7 +348,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 	font-weight: bold;
 	font-size: 40px;
 	text-align: center;
-	color: #c0392b;
+	color: black;
 }
 
 .single {
@@ -719,3 +720,19 @@ footer p,
 .footer-links a:hover {
 	text-decoration: underline black;
 }
+
+.document {
+}
+
+
+ table, th, td {
+	border: 2px solid black;
+	border-collapse: collapse;	
+	margin: 0 auto;
+		
+  }
+
+  th, td {
+	padding: 6px;
+	text-align: left;
+  }
