@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Yuconz.AuthTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-04-06T07:12:14" hostname="DESKTOP-I1SBGKO" time="0.019">
+  <properties/>
+  <testcase name="checkValidUserTest1" classname="Yuconz.AuthTest" time="0.014"/>
+  <testcase name="checkValidUserTest2" classname="Yuconz.AuthTest" time="0.001"/>
+  <testcase name="checkValidUserTest3" classname="Yuconz.AuthTest" time="0.001"/>
+  <testcase name="connectToDbTest" classname="Yuconz.AuthTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
