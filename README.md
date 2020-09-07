@@ -1,13 +1,13 @@
-# Yuconz Repository
+# Yuconz Project Repository
 #### By
 ![Logo](/Assets/KentSoftLogo.png)
-
+##### [Application](https://github.com/RockiRider/YuconzJava)
 ##### Tasks:
 
 - [x] Stage 2
 - [x] Stage 3
-- [ ] Stage 4
-- [ ] Stage 5
+- [x] Stage 4
+- [x] Stage 5
 
 ##### You can view our Trello Board Here For More Details On The Tasks We Have To Complete For Each Stage:
 - [Stage 2](https://trello.com/b/sGcq4F6V/yuconz-stage-2)
